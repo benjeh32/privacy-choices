@@ -4,7 +4,7 @@ jobs:
 
   # Build job
   build:
-    working_directory: ~/react-archetype
+    working_directory: ~/privacy-choices
 
     # Build on a Node Docker image
     docker:
@@ -29,11 +29,11 @@ jobs:
       - run: npm run build
 
       # Zip artifacts
-      - run: zip -r react-archetype.zip dist
+      - run: zip -r privacy-choices.zip build
 
       # Store artifacts
       - store_artifacts:
-          path: react-archetype.zip
+          path: privacy-choices.zip
 
       # Cache node_modules
       - save_cache:

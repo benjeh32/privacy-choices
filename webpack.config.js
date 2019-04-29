@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.join(__dirname, 'dist')
+        path: path.join(__dirname, 'build')
     },
     module: {
         rules: [
@@ -40,16 +39,11 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            title: 'React Application',
-            template: path.join(__dirname, 'src', 'index.html')
-        }),
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['build']),
     ],
     devtool: 'inline-source-map',
     devServer: {
         port: 9000,
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, 'build'),
     }
 };
