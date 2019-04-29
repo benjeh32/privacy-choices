@@ -1,9 +1,9 @@
-# React Archetype
-A basic React application configured with Webpack, Babel, Redux and more.
+# Privacy Choices
+Privacy choices.
 
 ## Status
 ### Continuous Integration
-[![CircleCI](https://circleci.com/gh/benjeh32/react-archetype.svg?style=svg)](https://circleci.com/gh/benjeh32/react-archetype)
+[![CircleCI](https://circleci.com/gh/benjeh32/privacy-choices.svg?style=svg)](https://circleci.com/gh/benjeh32/privacy-choices)
 
 ## Development
 ### Prerequisites
@@ -11,7 +11,7 @@ A basic React application configured with Webpack, Babel, Redux and more.
 
 ### Building
 From a terminal:
-```console
+```console 
 $ npm install
 $ npm run build
 ```
