@@ -16,10 +16,10 @@ $ npm install
 $ npm run build
 ```
 
-### Running
-After building, host `dist/` on a server and visit it in your browser.
+### Using
+After building, reference `build/index.bundle.js`.
 
-Alternatively, to start a live-updating development server:
+To start a live-updating webpack:
 ```console
-$ npm run start
+$ npm run watch
 ```
