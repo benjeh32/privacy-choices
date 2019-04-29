@@ -41,9 +41,5 @@ module.exports = {
         }),
         new CleanWebpackPlugin(['build']),
     ],
-    devtool: 'inline-source-map',
-    devServer: {
-        port: 9000,
-        contentBase: path.join(__dirname, 'build'),
-    }
+    devtool: 'inline-source-map'
 };
