@@ -1,0 +1,10 @@
+#privacy-choices #privacy-choices-notification {
+    width: 100%;
+    background: #0077a7;
+    padding: 20px;
+    z-index: 10000;
+}
+
+#privacy-choices #privacy-choices-notification p {
+    font-size: .9em;
+}

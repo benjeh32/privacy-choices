@@ -1,0 +1,27 @@
+#privacy-choices .visible {
+    visibility: visible
+}
+
+#privacy-choices .hidden {
+    visibility: hidden
+}
+
+#privacy-choices h3,
+#privacy-choices h4,
+#privacy-choices p {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #fff;
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.privacy-choices-service .switch {
+    vertical-align: middle;
+    margin: 0 20px;
+}
+
+.privacy-choices-service .description {
+    display: block;
+    color: #fff;
+}
