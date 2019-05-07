@@ -7,7 +7,6 @@ import PrivacyChoices from './components/privacy-choices';
 
 // Local style imports
 import '../css/banner.css';
-import '../css/notification.css';
 import '../css/shared.css';
 
 // Constants
