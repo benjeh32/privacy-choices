@@ -28,6 +28,8 @@ class PrivacyChoices extends Component {
     this.toggleSettings = this.toggleSettings.bind(this)
     this.promptAcceptDefault = this.promptAcceptDefault.bind(this)
     this.promptOpenSettings = this.promptOpenSettings.bind(this)
+    this.bulkAcceptAll = this.bulkAcceptAll.bind(this)
+    this.bulkRejectAll = this.bulkRejectAll.bind(this)
   };
 
   // Set settings open state
@@ -46,6 +48,7 @@ class PrivacyChoices extends Component {
 
   // Toggle for settings
   toggleSettings () {
+    this.setPromptShown(false)
     this.setSettingsOpen(!this.state.isSettingsOpen)
   };
 
@@ -61,10 +64,22 @@ class PrivacyChoices extends Component {
     this.setSettingsOpen(true)
   };
 
+  // Bulk accept all handler
+  bulkAcceptAll () {
+    this.setSettingsOpen(!this.state.isSettingsOpen) // TODO
+    this.setSettingsOpen(false)
+  };
+
+  // Bulk reject all handler
+  bulkRejectAll () {
+    this.setSettingsOpen(!this.state.isSettingsOpen) // TODO
+    this.setSettingsOpen(false)
+  };
+
   // Render
   render () {
     // Sidebar content
-    const sidebarContent = <PrivacyChoicesSettings onClose={this.toggleSettings} />
+    const sidebarContent = <PrivacyChoicesSettings onClose={this.toggleSettings} onAcceptAll={this.bulkAcceptAll} onRejectAll={this.bulkRejectAll} />
 
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child

@@ -1,24 +1,34 @@
 
 #privacy-choices #privacy-choices-settings {
     height: 100%;
-    width: 500px;
+    width: 400px;
     background: #0077a7;
     padding: 20px;
     z-index: 10000;
 }
+
+#privacy-choices #privacy-choices-settings p {
+    margin-bottom: 20px;
+}
+
 #privacy-choices #privacy-choices-settings #privacy-choices-settings-header {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-#privacy-choices #privacy-choices-settings #privacy-choices-settings-header h4 {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: auto;
+#privacy-choices #privacy-choices-settings #privacy-choices-settings-content .privacy-choices-settings-divider {
+    margin: 8px 0;
+    height: 1;
+    background: #ffffff;
 }
 
-#privacy-choices #privacy-choices-settings #privacy-choices-settings-header button {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
+#privacy-choices #privacy-choices-settings #privacy-choices-settings-content #privacy-choices-settings-bulk {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }

@@ -5,78 +5,58 @@ import React, { Component } from 'react'
 import PrivacyChoicesCategory from './category'
 import PrivacyChoicesButton from '../shared/button'
 
-// Constants
-const settingsTitle = 'Your privacy choices'
-const closeButtonText = 'Close'
+// Styling constants
 const id = 'privacy-choices-settings'
 const headerId = 'privacy-choices-settings-header'
+const contentId = 'privacy-choices-settings-content'
+const bulkChangeId = 'privacy-choices-settings-bulk'
+const dividerClassName = 'privacy-choices-settings-divider'
 
+// Language constants
+const settingsTitle = 'Your privacy choices'
+const closeButtonText = 'Close'
+const acceptAllButtonText = 'Accept all'
+const declineAllButtonText = 'Decline all'
+const guidanceText = 'This site uses cookies. Some of these cookies are essential to core site functionality, while others help us to improve your experience by providing insights into how the site is being used. You can set your privacy choices below.'
+const changesGuidanceText = 'Changes will take effect immediately.'
+
+// Configuration constants
 const userConfig = window.privacychoices || {}
-const userServices = userConfig.services || []
-
-const styles = {
-  sidebarDescription: {
-    display: 'block',
-    color: '#fff',
-    fontSize: '1em',
-    lineHeight: '1.5em',
-    fontWeight: '400'
-
-  },
-  divider: {
-    margin: '8px 0',
-    height: 1,
-    backgroundColor: '#fff'
-
-  },
-  content: {
-    minHeight: '88vh',
-    backgroundColor: '#0077a7'
-  }
-}
+const categories = userConfig.services || []
 
 /**
- *
+ * Component for the settings panel that sits inside the sidebar.
  */
 class PrivacyChoicesSettings extends Component {
   // Render
   render () {
-    const consentCategories = []
-
-    for (let i = 0; i < userServices.length; i++) {
-      consentCategories.push(
-        <div style={styles.divider} />
+    // Build categories
+    const categoriesElements = []
+    categories.forEach(function (category, index) {
+      categoriesElements.push(
+        <div className={dividerClassName} />
       )
-
-      consentCategories.push(
-        <PrivacyChoicesCategory {...userServices[i]} />
+      categoriesElements.push(
+        <PrivacyChoicesCategory {...category} />
       )
-    }
+    })
 
     return (
-      <div>
-
-        <div id={id}>
-          <div id={headerId}>
-            <h4>{settingsTitle}</h4>
-            <PrivacyChoicesButton buttonText={closeButtonText} onClick={this.props.onClose} />
+      <div id={id}>
+        <div id={headerId}>
+          <h4>{settingsTitle}</h4>
+          <PrivacyChoicesButton buttonText={closeButtonText} onClick={this.props.onClose} />
+        </div>
+        <div id={contentId}>
+          <p>{guidanceText}</p>
+          <p>{changesGuidanceText}</p>
+          <div id={bulkChangeId}>
+            <PrivacyChoicesButton buttonText={acceptAllButtonText} onClick={this.props.onAcceptAll} />
+            <PrivacyChoicesButton buttonText={declineAllButtonText} onClick={this.props.onRejectAll} />
           </div>
-          <div style={styles.content}>
-            <p style={styles.sidebarDescription}>
-                This site uses cookies. Some of these cookies are essential to core site functionality, while others help us to improve your experience by providing insights into how the site is being used.
-            </p>
-            <p style={styles.sidebarDescription}>
-                You can set your privacy choices below. Changes will take effect immediately.
-            </p>
-            <div style={styles.sidebarDescription}>
-              <button style={{ float: 'left' }}>Accept all</button>
-              <button style={{ float: 'right' }}>Reject all</button>
-            </div>
-            {consentCategories}
-          </div>
-
-        </div></div>
-
+          {categoriesElements}
+        </div>
+      </div>
     )
   }
 }
