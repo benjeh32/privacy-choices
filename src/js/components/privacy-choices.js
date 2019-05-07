@@ -53,6 +53,7 @@ class PrivacyChoices extends Component {
     // Handle user accepting the default consent
     promptAcceptDefault() {
         this.setPromptShown(false);
+        PrivacyChoicesPreferences.writePreferences({}); // TODO: this needs to call out to accept all the default consent items
     };
 
     // Handle user choosing settings

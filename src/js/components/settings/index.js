@@ -47,39 +47,23 @@ const styles = {
 class PrivacyChoicesSettings extends Component {
 
     render() {
-        const acceptInitialSettings = () => {
-            // this needs to accept all of the ones marked as such in the services config
-            PrivacyChoicesPreferences.writePreferences({});
-
-            // A little poor but this can be re-worked at a later date.
-            window.location.reload();
-        };
 
         const style = this.props.style
             ? { ...styles.sidebar, ...this.props.style }
             : styles.sidebar;
 
-        const services = [];
+        const consentCategories = [];
 
         for (let i = 0; i < userServices.length; i++) {
-            services.push(
+            consentCategories.push(
                 <div style={styles.divider} />
             );
 
-            services.push(
+            consentCategories.push(
                 <PrivacyChoicesCategory {...userServices[i]} />
             );
         }
 
-        if (this.props.doNotify) {
-            services.push(
-                <div style={{ textAlign: "center" }}>
-                    <button onClick={acceptInitialSettings} className="privacy-choices-accept">
-                        Continue with these settings
-        </button>
-                </div>
-            );
-        }
 
         return (
             <div style={style}>
@@ -98,7 +82,7 @@ class PrivacyChoicesSettings extends Component {
                         <button style={{ float: "left" }}>Accept all</button>
                         <button style={{ float: "right" }}>Reject all</button>
                     </div>
-                    {services}
+                    {consentCategories}
                 </div>
 
             </div>

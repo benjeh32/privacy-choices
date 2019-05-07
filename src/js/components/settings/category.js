@@ -1,7 +1,13 @@
+// Imports
 import React, { Component } from 'react';
 import Switch from 'react-switch';
+
+// Local imports
 import PrivacyChoicesPreferences from '../../preferences';
 
+/**
+ * 
+ */
 class PrivacyChoicesCategory extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +40,7 @@ class PrivacyChoicesCategory extends Component {
         });
     }
 
+    // Render
     render() {
         return (
             <div id={this.props.key} className='privacy-choices-service'>
@@ -54,4 +61,5 @@ class PrivacyChoicesCategory extends Component {
     }
 }
 
+// Export component
 export default PrivacyChoicesCategory;
