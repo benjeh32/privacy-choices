@@ -1,0 +1,24 @@
+
+#privacy-choices #privacy-choices-settings {
+    height: 100%;
+    width: 500px;
+    background: #0077a7;
+    padding: 20px;
+    z-index: 10000;
+}
+#privacy-choices #privacy-choices-settings #privacy-choices-settings-header {
+    display: flex;
+    flex-direction: row;
+}
+
+#privacy-choices #privacy-choices-settings #privacy-choices-settings-header h4 {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+}
+
+#privacy-choices #privacy-choices-settings #privacy-choices-settings-header button {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+}

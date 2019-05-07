@@ -64,7 +64,7 @@ class PrivacyChoices extends Component {
   // Render
   render () {
     // Sidebar content
-    const sidebarContent = <PrivacyChoicesSettings {...this.props} />
+    const sidebarContent = <PrivacyChoicesSettings onClose={this.toggleSettings} />
 
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child

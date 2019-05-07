@@ -8,6 +8,7 @@ import PrivacyChoices from './components/privacy-choices'
 // Local style imports
 import '../css/banner.css'
 import '../css/shared.css'
+import '../css/settings.css'
 
 // Constants
 const rootElementId = 'privacy-choices'
