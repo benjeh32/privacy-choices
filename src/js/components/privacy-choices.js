@@ -8,7 +8,7 @@ import PrivacyChoicesPreferences from '../preferences';
 import PrivacyChoicesSettings from './settings';
 
 // Constants
-const defaultIsSidebarOpen = false;
+const isSettingsOpenDefault = false;
 
 /**
  * Privacy choices component.
@@ -21,18 +21,44 @@ class PrivacyChoices extends Component {
 
         // Set up state
         this.state = {
-            isSidebarOpen: defaultIsSidebarOpen
+            isSettingsOpen: isSettingsOpenDefault,
+            isPromptShown: !PrivacyChoicesPreferences.isPreferencesStored()
         };
 
         // Bind functions
-        this.toggleSidebar = this.toggleSidebar.bind(this);
+        this.toggleSettings = this.toggleSettings.bind(this);
+        this.promptAcceptDefault = this.promptAcceptDefault.bind(this);
+        this.promptOpenSettings = this.promptOpenSettings.bind(this);
     };
 
-    // State toggle for sidebar
-    toggleSidebar() {
+    // Set settings open state
+    setSettingsOpen(state) {
         this.setState({
-            isSidebarOpen: !this.state.isSidebarOpen
+            isSettingsOpen: state
         });
+    };
+
+    // Set prompt shown state
+    setPromptShown(state) {
+        this.setState({
+            isPromptShown: state
+        });
+    };
+
+    // Toggle for settings
+    toggleSettings() {
+        this.setSettingsOpen(!this.state.isSettingsOpen);
+    };
+
+    // Handle user accepting the default consent
+    promptAcceptDefault() {
+        this.setPromptShown(false);
+    };
+
+    // Handle user choosing settings
+    promptOpenSettings() {
+        this.setPromptShown(false);
+        this.setSettingsOpen(true);
     };
 
     // Render
@@ -40,13 +66,10 @@ class PrivacyChoices extends Component {
         // Sidebar content
         const sidebarContent = <PrivacyChoicesSettings {...this.props} />;
 
-        // Whether consent is already held
-        const isConsentHeld = PrivacyChoicesPreferences.isPreferencesStored();
-
         return (
             // react-sidebar needs to wrap the other content, in this case the banner is a child
-            <Sidebar sidebar={sidebarContent} open={this.state.isSidebarOpen}>
-                <PrivacyChoicesBanner onToggleSidebar={this.toggleSidebar} isConsentHeld={isConsentHeld} />
+            <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen}>
+                <PrivacyChoicesBanner onToggleSettings={this.toggleSettings} isPromptShown={this.state.isPromptShown} onPromptAccept={this.promptAcceptDefault} onPromptSettings={this.promptOpenSettings} />
             </Sidebar>
         );
     };

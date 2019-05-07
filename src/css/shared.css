@@ -1,20 +1,54 @@
-#privacy-choices .visible {
-    visibility: visible
-}
-
-#privacy-choices .hidden {
-    visibility: hidden
-}
-
 #privacy-choices h3,
 #privacy-choices h4,
-#privacy-choices p {
+#privacy-choices p,
+#privacy-choices button {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    color: #fff;
+    color: #ffffff;
     margin: 0;
-    font-size: 1em;
+    font-size: 1.25em;
     line-height: 1.5em;
 }
+
+#privacy-choices p, #privacy-choices button {
+    font-size: 1em;
+}
+
+#privacy-choices button {
+    background: #000025;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 10px 20px;
+    z-index: 10000;
+}
+
+#privacy-choices button :focus {
+    outline: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .privacy-choices-service .switch {
     vertical-align: middle;
@@ -24,4 +58,35 @@
 .privacy-choices-service .description {
     display: block;
     color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.privacy-choices-accept {
+    background: rgb(0, 136, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15pt;
+}
+
+.privacy-choices-close-sidebar {
+    background: none;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    border: none;
+    cursor: pointer;
+    float: right;
 }

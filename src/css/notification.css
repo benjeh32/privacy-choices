@@ -3,8 +3,28 @@
     background: #0077a7;
     padding: 20px;
     z-index: 10000;
+    display: flex;
 }
 
-#privacy-choices #privacy-choices-notification p {
-    font-size: .9em;
+#privacy-choices #privacy-choices-notification .privacy-choices-notification-buttons, #privacy-choices #privacy-choices-notification .privacy-choices-notification-message {
+    display: flex;
+    flex-direction: column;
+}
+#privacy-choices #privacy-choices-notification .privacy-choices-notification-message {
+    margin-right: 20px;
+}
+
+#privacy-choices #privacy-choices-notification .privacy-choices-notification-buttons {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex-direction: row;
+}
+
+#privacy-choices #privacy-choices-notification .privacy-choices-notification-buttons button {
+    margin-right: 10px;
+}
+
+#privacy-choices #privacy-choices-notification .privacy-choices-notification-buttons button:last-child {
+    margin-right: 0;
 }

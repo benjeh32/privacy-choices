@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 
 // Local imports
 import PrivacyChoicesNotification from '../banner/notification';
-import PrivacyChoicesToggle from '../banner/toggle';
+import PrivacyChoicesButton from '../shared/button';
 
 // Constants
 const id = 'privacy-choices-banner';
+const toggleButtonText = 'Privacy choices'
 
 /**
  * Component for the privacy choices banner.
@@ -19,8 +20,8 @@ class PrivacyChoicesBanner extends Component {
     render() {
         return (
             <div id={id}>
-                <PrivacyChoicesToggle onClick={this.props.onToggleSidebar} />
-                <PrivacyChoicesNotification isConsentHeld={this.props.isConsentHeld} />
+                <PrivacyChoicesButton buttonText={toggleButtonText} onClick={this.props.onToggleSettings} />
+                <PrivacyChoicesNotification isPromptShown={this.props.isPromptShown} onAccept={this.props.onPromptAccept} onSettings={this.props.onPromptSettings} />
             </div>
         );
     };
