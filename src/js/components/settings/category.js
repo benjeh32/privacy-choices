@@ -5,57 +5,55 @@ import Switch from 'react-switch'
 // Local imports
 import PrivacyChoicesPreferences from '../../preferences'
 
+// Styling constants
+const className = 'privacy-choices-category'
+const headerClassName = 'privacy-choices-category-header'
+
 /**
- *
+ * Component for a consent category.
  */
 class PrivacyChoicesCategory extends Component {
+  // Constructor
   constructor (props) {
     super(props)
 
+    // Set up state
     this.state = {
-      checked: PrivacyChoicesPreferences.isCategoryConsented(this.props.storage_key)
+      isChecked: PrivacyChoicesPreferences.isCategoryConsented(this.props.storageKey)
     }
 
-    this.runCallbacks(this.state.checked)
+    // Run callbacks
+    this.runCallbacks(this.state.isChecked)
 
-    this.handleChange = this.handleChange.bind(this)
+    // Bind functions
+    this.onChangeChecked = this.onChangeChecked.bind(this)
   }
 
+  // Execute the callbacks for this category depending on if enabled or disabled
   runCallbacks (isChecked) {
     if (isChecked) {
-      this.props.disable()
-      return
+      this.props.onAccept()
+    } else {
+      this.props.onDecline()
     }
-
-    this.props.enable()
   }
 
-  handleChange (checked) {
-    this.runCallbacks(this.state.checked)
-
-    PrivacyChoicesPreferences.setCategoryConsent([this.props.storage_key], checked)
-
-    this.setState({
-      checked
-    })
+  // Handler for changing the switch checked status
+  onChangeChecked (isChecked) {
+    PrivacyChoicesPreferences.setCategoryConsent(this.props.storageKey, isChecked)
+    this.setState({ isChecked })
+    this.runCallbacks(isChecked)
   }
 
   // Render
   render () {
     return (
-      <div id={this.props.key} className='privacy-choices-service'>
-        <h4>
-          {this.props.title}
-
-          <Switch
-            onChange={this.handleChange}
-            checked={this.state.checked}
-            className='switch'
-          />
-        </h4>
-        <p className='description'>
-          {this.props.description}
-        </p>
+      <div id={this.props.storageKey} className={className}>
+        <div className={headerClassName}>
+          <h4>{this.props.title}</h4>
+          <Switch onChange={this.onChangeChecked} checked={this.props.isChecked} />
+        </div>
+        <p>{this.props.description}</p>
       </div>
     )
   }

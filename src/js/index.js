@@ -5,12 +5,12 @@ import React from 'react'
 // Local imports
 import PrivacyChoices from './components/privacy-choices'
 
-// Local style imports
+// Styling imports
 import '../css/banner.css'
 import '../css/shared.css'
 import '../css/settings.css'
 
-// Constants
+// Styling constants
 const rootElementId = 'privacy-choices'
 const rootElementType = 'div'
 

@@ -4,10 +4,12 @@ import React, { Component } from 'react'
 // Local imports
 import PrivacyChoicesButton from '../shared/button'
 
-// Constants
+// Styling constants
 const id = 'privacy-choices-notification'
-const messageClassName = 'privacy-choices-notification-message'
-const buttonsClassName = 'privacy-choices-notification-buttons'
+const messageId = 'privacy-choices-notification-message'
+const buttonsId = 'privacy-choices-notification-buttons'
+
+// Language constants
 const acceptButtonText = 'Accept and continue'
 const settingsButtonText = 'Manage choices'
 
@@ -24,11 +26,11 @@ class PrivacyChoicesNotification extends Component {
 
     return (
       <div id={id}>
-        <div className={messageClassName}>
+        <div id={messageId}>
           <h3>Your privacy choices for this site</h3>
           <p>This site uses cookies and other storage technologies to optimise site functionality and give you the best possible experience (list all categories and usages).</p>
         </div>
-        <div className={buttonsClassName}>
+        <div id={buttonsId}>
           <PrivacyChoicesButton buttonText={acceptButtonText} onClick={this.props.onAccept} />
           <PrivacyChoicesButton buttonText={settingsButtonText} onClick={this.props.onSettings} />
         </div>

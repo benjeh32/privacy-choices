@@ -5,8 +5,12 @@
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     color: #ffffff;
     margin: 0;
-    font-size: 1.25em;
+    font-size: 1.3em;
     line-height: 1.5em;
+}
+
+#privacy-choices h4 {
+    font-size: 1.1em;
 }
 
 #privacy-choices p, #privacy-choices button {
@@ -22,7 +26,7 @@
     z-index: 10000;
 }
 
-#privacy-choices button :focus {
+#privacy-choices button:focus {
     outline: 0;
 }
 

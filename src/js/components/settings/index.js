@@ -21,8 +21,8 @@ const guidanceText = 'This site uses cookies. Some of these cookies are essentia
 const changesGuidanceText = 'Changes will take effect immediately.'
 
 // Configuration constants
-const userConfig = window.privacychoices || {}
-const categories = userConfig.services || []
+const privacyChoicesConfiguration = window.privacyChoicesConfiguration || {}
+const categories = privacyChoicesConfiguration.categories || []
 
 /**
  * Component for the settings panel that sits inside the sidebar.
@@ -44,7 +44,7 @@ class PrivacyChoicesSettings extends Component {
     return (
       <div id={id}>
         <div id={headerId}>
-          <h4>{settingsTitle}</h4>
+          <h3>{settingsTitle}</h3>
           <PrivacyChoicesButton buttonText={closeButtonText} onClick={this.props.onClose} />
         </div>
         <div id={contentId}>

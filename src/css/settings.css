@@ -20,8 +20,8 @@
 }
 
 #privacy-choices #privacy-choices-settings #privacy-choices-settings-content .privacy-choices-settings-divider {
-    margin: 8px 0;
-    height: 1;
+    margin: 0;
+    height: 1px;
     background: #ffffff;
 }
 
@@ -30,5 +30,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
+}
+
+#privacy-choices #privacy-choices-settings #privacy-choices-settings-content .privacy-choices-category-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
