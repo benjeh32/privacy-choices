@@ -51,7 +51,7 @@ class PrivacyChoicesCategory extends Component {
       <div id={this.props.storageKey} className={className}>
         <div className={headerClassName}>
           <h4>{this.props.title}</h4>
-          <Switch onChange={this.onChangeChecked} checked={this.props.isChecked} />
+          <Switch onChange={this.onChangeChecked} checked={this.state.isChecked} />
         </div>
         <p>{this.props.description}</p>
       </div>
