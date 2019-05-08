@@ -19,7 +19,7 @@ class PrivacyChoicesCategory extends Component {
 
     // Set up state
     this.state = {
-      isChecked: PrivacyChoicesPreferences.isCategoryConsented(this.props.storageKey)
+      isChecked: this.props.required || PrivacyChoicesPreferences.isCategoryConsented(this.props.storageKey)
     }
 
     // Run callbacks
@@ -29,12 +29,12 @@ class PrivacyChoicesCategory extends Component {
     this.onChangeChecked = this.onChangeChecked.bind(this)
   }
 
-  // Execute the callbacks for this category depending on if enabled or disabled
+  // Execute the callbacks for this category depending on if it has been checked or unchecked
   runCallbacks (isChecked) {
     if (isChecked) {
-      this.props.onAccept()
+      typeof this.props.handleEnabled === 'function' && this.props.handleEnabled()
     } else {
-      this.props.onDecline()
+      typeof this.props.handleDisabled === 'function' && this.props.handleDisabled()
     }
   }
 
@@ -51,7 +51,7 @@ class PrivacyChoicesCategory extends Component {
       <div id={this.props.storageKey} className={className}>
         <div className={headerClassName}>
           <h4>{this.props.title}</h4>
-          <Switch onChange={this.onChangeChecked} checked={this.state.isChecked} />
+          <Switch onChange={this.onChangeChecked} checked={this.state.isChecked} disabled={this.props.required} />
         </div>
         <p>{this.props.description}</p>
       </div>
