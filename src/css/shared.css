@@ -23,7 +23,6 @@
     cursor: pointer;
     white-space: nowrap;
     padding: 10px 20px;
-    z-index: 10000;
 }
 
 #privacy-choices button:focus {
