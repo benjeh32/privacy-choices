@@ -22,15 +22,13 @@ class PrivacyChoicesSettings extends Component {
     // Build categories
     const categoriesElements = []
 
-    // Necessary category, if enabled
-    if (PrivacyChoicesConfiguration.necessary.displayed) {
-      categoriesElements.push(
-        <div className={dividerClassName} />
-      )
-      categoriesElements.push(
-        <PrivacyChoicesCategory key='necessary' required title={PrivacyChoicesConfiguration.necessary.title} description={PrivacyChoicesConfiguration.necessary.description} handleEnabled={PrivacyChoicesConfiguration.necessary.handleEnabled} />
-      )
-    }
+    // Necessary category
+    categoriesElements.push(
+      <div className={dividerClassName} />
+    )
+    categoriesElements.push(
+      <PrivacyChoicesCategory key='necessary' required title={PrivacyChoicesConfiguration.necessary.title} description={PrivacyChoicesConfiguration.necessary.description} handleEnabled={PrivacyChoicesConfiguration.necessary.handleEnabled} />
+    )
 
     // Other categories
     PrivacyChoicesConfiguration.categories.forEach(function (category, index) {

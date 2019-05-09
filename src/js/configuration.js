@@ -1,11 +1,10 @@
 // Constants
 const defaultConfiguration = {
   necessary: {
-    displayed: true,
     title: 'Necessary Storage',
     description: 'Necessary storage enables core functionality by using, for example, cookies. The website cannot function properly without this, and it can only be disabled by changing your browser preferences.',
     handleEnabled: function () {
-      console.log('Privacy Choices: handling enabling of \'necessary\' category.')
+      console.log('Privacy Choices: handling \'necessary\' category.')
     }
   },
   categories: [ ],
