@@ -3,14 +3,15 @@ import PrivacyChoicesConfiguration from './configuration'
 import CookiesHelper from './cookies'
 
 // Constants
-const defaultPreferences = {}
+const defaultPreferences = {
+  'hasUserInteracted': false,
+  'choices': { }
+}
 
 class PrivacyChoicesPreferences {
   /**
-     * Update user preferences with a given set.
-     *
-     * @param {Object} preferences The preferences to update to.
-     */
+   * Store user preferences.
+   */
   static writePreferences (preferences) {
     let updatePreferences = defaultPreferences
 
@@ -18,58 +19,156 @@ class PrivacyChoicesPreferences {
       updatePreferences = preferences
     }
 
-    CookiesHelper.setCookie(PrivacyChoicesConfiguration.consentCookie.name, JSON.stringify(updatePreferences), PrivacyChoicesConfiguration.PrivacyChoicesConfiguration.consentCookie.expiryDays)
-  };
+    CookiesHelper.setCookie(PrivacyChoicesConfiguration.storage.key, JSON.stringify(updatePreferences), PrivacyChoicesConfiguration.storage.expiryDays)
+  }
 
   /**
-     * Read the user's current preferences.
-     *
-     * @returns The user's preferences if stored, otherwise the default preference set.
-     */
+   * Recall user preferences.
+   */
   static readPreferences () {
-    var currentCookie = CookiesHelper.getCookie(PrivacyChoicesConfiguration.consentCookie.name)
+    let currentCookie = CookiesHelper.getCookie(PrivacyChoicesConfiguration.storage.key)
 
-    let userPreferences
+    let preferences
 
     if (currentCookie) {
-      userPreferences = JSON.parse(currentCookie)
+      preferences = JSON.parse(currentCookie)
     }
 
-    return userPreferences
-  };
-
-  static setCategoryConsent (categoryKey, isConsented) {
-    let preferences = this.readPreferences()
-    if (!preferences) {
-      preferences = defaultPreferences
-    };
-    preferences[categoryKey] = isConsented
-    this.writePreferences(preferences)
-  };
-
-  static isCategoryConsented (categoryKey) {
-    let isConsented
-    var preferences = this.readPreferences()
-    if (preferences && preferences[categoryKey]) {
-      isConsented = preferences[categoryKey]
-    } else {
-      isConsented = false
-    };
-    return isConsented
-  };
+    return preferences
+  }
 
   /**
-     * Returns whether a user's preferences are currently stored or not.
-     */
-  static isPreferencesStored () {
-    let isStored = false
+   * Initialise a user's preferences if not already set.
+   */
+  static initPreferences () {
+    let preferences = this.readPreferences()
 
-    if (this.readPreferences()) {
-      isStored = true
+    if (!preferences) {
+      this.writePreferences(defaultPreferences)
     }
 
-    return isStored
-  };
+    return preferences
+  }
+
+  /**
+   * Sets a category's consent.
+   *
+   * Returns the new choices being saved.
+   */
+  static setCategoryConsent (categoryKey, isConsented) {
+    let preferences = this.readPreferences()
+
+    if (preferences) {
+      preferences.choices[categoryKey] = isConsented
+      this.writePreferences(preferences)
+    }
+
+    return preferences.choices
+  }
+
+  /**
+   * Returns whether a category has accepted consent.
+   */
+  static isCategoryConsented (categoryKey) {
+    let isCategoryConsented = false
+
+    let preferences = this.readPreferences()
+
+    if (preferences && preferences.choices[categoryKey]) {
+      isCategoryConsented = preferences.choices[categoryKey]
+    }
+
+    return isCategoryConsented
+  }
+
+  /**
+   * Returns whether a user has interacted.
+   */
+  static getHasUserInteracted () {
+    let hasUserInteracted = false
+
+    let preferences = this.readPreferences()
+
+    if (preferences) {
+      hasUserInteracted = preferences.hasUserInteracted
+    }
+
+    return hasUserInteracted
+  }
+
+  /**
+   * Sets whether a user has interacted.
+   */
+  static setUserHasInteracted (hasUserInteracted) {
+    let preferences = this.readPreferences()
+
+    if (preferences) {
+      preferences.hasUserInteracted = hasUserInteracted
+    }
+
+    this.writePreferences(preferences)
+  }
+
+  /**
+   * Accepts and stores the default consent choices for the user.
+   *
+   * Any of the consent categories marked as 'default' will have their consent marked as accepted.
+   *
+   * Returns the new choices being saved.
+   */
+  static acceptDefaultCategories () {
+    let preferences = this.readPreferences()
+    if (preferences) {
+      PrivacyChoicesConfiguration.categories.forEach((category) => {
+        if (category.default) {
+          preferences.choices[category.storageKey] = true
+        }
+      })
+      this.writePreferences(preferences)
+    }
+
+    return preferences.choices
+  }
+
+  /**
+   * Accepts and stores all consent categories for the user.
+   *
+   * All consent categories will have their consent choice marked as accepted.
+   *
+   * Returns the new choices being saved.
+   */
+  static acceptAllCategories () {
+    let preferences = this.readPreferences()
+
+    if (preferences) {
+      PrivacyChoicesConfiguration.categories.forEach((category) => {
+        preferences.choices[category.storageKey] = true
+      })
+      this.writePreferences(preferences)
+    }
+
+    return preferences.choices
+  }
+
+  /**
+   * Declines and stores all consent categories for the user.
+   *
+   * All consent categories will have their consent choice marked as declined.
+   *
+   * Returns the new choices being saved.
+   */
+  static declineAllCategories () {
+    let preferences = this.readPreferences()
+
+    if (preferences) {
+      PrivacyChoicesConfiguration.categories.forEach(category => {
+        preferences.choices[category.storageKey] = false
+      })
+      this.writePreferences(preferences)
+    }
+
+    return preferences.choices
+  }
 }
 
 export default PrivacyChoicesPreferences

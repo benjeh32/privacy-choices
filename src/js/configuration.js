@@ -24,8 +24,8 @@ const defaultConfiguration = {
       settingsButton: 'Manage choices'
     }
   },
-  consentCookie: {
-    name: 'privacy-choices',
+  storage: {
+    key: 'privacy-choices',
     expiryDays: 365
   }
 }
