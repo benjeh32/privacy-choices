@@ -7,7 +7,7 @@ const className = 'privacy-choices-category'
 const headerClassName = 'privacy-choices-category-header'
 
 /**
- * Component for a consent category.
+ * Component for a category on the settings menu.
  */
 class PrivacyChoicesCategory extends Component {
   // Constructor
@@ -15,21 +15,24 @@ class PrivacyChoicesCategory extends Component {
     super(props)
 
     // Bind functions
-    this.onChangeChecked = this.onChangeChecked.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  // Handler for changing the switch checked status
-  onChangeChecked (isChecked) {
-    this.props.saveChange(this.props.storageKey, isChecked)
+  // Handler for changing the switch
+  handleChange (isChecked) {
+    this.props.saveChange(this.props.key, isChecked)
   }
 
   // Render
   render () {
+    // A required category is always checked
+    let isChecked = this.props.isRequired || this.props.isConsented
+
     return (
-      <div id={this.props.storageKey} className={className}>
+      <div className={className}>
         <div className={headerClassName}>
           <h4>{this.props.title}</h4>
-          <Switch onChange={this.onChangeChecked} checked={this.props.isRequired || this.props.isConsented} disabled={this.props.isRequired} />
+          <Switch onChange={this.handleChange} checked={isChecked} disabled={this.props.isRequired} />
         </div>
         <p>{this.props.description}</p>
       </div>

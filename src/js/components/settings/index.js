@@ -27,16 +27,16 @@ class PrivacyChoicesSettings extends Component {
       <div className={dividerClassName} key='necessary-divider' />
     )
     categoriesElements.push(
-      <PrivacyChoicesCategory key='necessary' storageKey='necessary' isRequired title={PrivacyChoicesConfiguration.necessary.title} description={PrivacyChoicesConfiguration.necessary.description} handleEnabled={PrivacyChoicesConfiguration.necessary.handleEnabled} />
+      <PrivacyChoicesCategory key='necessary' isRequired title={PrivacyChoicesConfiguration.necessary.title} description={PrivacyChoicesConfiguration.necessary.description} handleEnabled={PrivacyChoicesConfiguration.necessary.handleEnabled} />
     )
 
     // Other categories
     PrivacyChoicesConfiguration.categories.forEach((category) => {
       categoriesElements.push(
-        <div key={category.storageKey + '-divider'} className={dividerClassName} />
+        <div key={category.key + '-divider'} className={dividerClassName} />
       )
       categoriesElements.push(
-        <PrivacyChoicesCategory key={category.storageKey} {...category} isConsented={this.props.categoryChoices[category.storageKey] || false} saveChange={this.props.saveCategoryChange} />
+        <PrivacyChoicesCategory key={category.key} {...category} isConsented={this.props.categoryChoices[category.key] || false} saveChange={this.props.saveCategoryChange} />
       )
     })
 
