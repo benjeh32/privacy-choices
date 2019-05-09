@@ -44,13 +44,13 @@ class PrivacyChoicesSettings extends Component {
       <div id={id}>
         <div id={headerId}>
           <h3>{PrivacyChoicesConfiguration.language.settings.heading}</h3>
-          <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.settings.closeButton} onClick={this.props.onClose} />
+          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.closeButton} onClick={this.props.onClose} />
         </div>
         <div id={contentId}>
           <p>{PrivacyChoicesConfiguration.language.settings.description}</p>
           <div id={bulkChangeId}>
-            <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.settings.acceptAllButton} onClick={this.props.onAcceptAll} />
-            <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.settings.declineAllButton} onClick={this.props.onRejectAll} />
+            <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.acceptAllButton} onClick={this.props.onAcceptAll} />
+            <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.declineAllButton} onClick={this.props.onRejectAll} />
           </div>
           {categoriesElements}
         </div>

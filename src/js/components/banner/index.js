@@ -19,7 +19,7 @@ class PrivacyChoicesBanner extends Component {
   render () {
     return (
       <div id={id}>
-        <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.settings.openButton} onClick={this.props.onToggleSettings} />
+        <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.openButton} onClick={this.props.onToggleSettings} />
         <PrivacyChoicesNotification isPromptShown={this.props.isPromptShown} onAccept={this.props.onPromptAccept} onSettings={this.props.onPromptSettings} />
       </div>
     )

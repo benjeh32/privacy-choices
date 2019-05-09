@@ -9,11 +9,11 @@ class PrivacyChoicesButton extends Component {
   render () {
     return (
       <button onClick={this.props.onClick}>
-        {this.props.buttonText}
+        {this.props.text}
       </button>
     )
-  };
-};
+  }
+}
 
 // Export component
 export default PrivacyChoicesButton

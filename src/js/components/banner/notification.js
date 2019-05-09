@@ -28,8 +28,8 @@ class PrivacyChoicesNotification extends Component {
           <p>{PrivacyChoicesConfiguration.language.prompt.description}</p>
         </div>
         <div id={buttonsId}>
-          <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.prompt.acceptButton} onClick={this.props.onAccept} />
-          <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.prompt.settingsButton} onClick={this.props.onSettings} />
+          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.prompt.acceptButton} onClick={this.props.onAccept} />
+          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.prompt.settingsButton} onClick={this.props.onSettings} />
         </div>
       </div>
     )
