@@ -21,5 +21,5 @@ After building, reference `build/index.bundle.js`.
 
 To start a live-updating webpack:
 ```console
-$ npm run watch
+$ npm run start
 ```

@@ -8,7 +8,7 @@
     "scripts": {
         "test": "standard",
         "build": "npm test && webpack --config webpack.production.js",
-        "watch": "webpack --watch --config webpack.development.js",
+        "start": "webpack --watch --config webpack.development.js",
         "clean": "rimraf build node_modules",
         "reinstall": "npm run clean && npm install",
         "rebuild": "npm run reinstall && npm run build"

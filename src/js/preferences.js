@@ -1,9 +1,8 @@
 // Local imports
+import PrivacyChoicesConfiguration from './configuration'
 import CookiesHelper from './cookies'
 
 // Constants
-const preferencesKey = 'privacy-choices'
-const expiryDays = 365
 const defaultPreferences = {}
 
 class PrivacyChoicesPreferences {
@@ -19,7 +18,7 @@ class PrivacyChoicesPreferences {
       updatePreferences = preferences
     }
 
-    CookiesHelper.setCookie(preferencesKey, JSON.stringify(updatePreferences), expiryDays)
+    CookiesHelper.setCookie(PrivacyChoicesConfiguration.consentCookie.name, JSON.stringify(updatePreferences), PrivacyChoicesConfiguration.PrivacyChoicesConfiguration.consentCookie.expiryDays)
   };
 
   /**
@@ -28,7 +27,7 @@ class PrivacyChoicesPreferences {
      * @returns The user's preferences if stored, otherwise the default preference set.
      */
   static readPreferences () {
-    var currentCookie = CookiesHelper.getCookie(preferencesKey)
+    var currentCookie = CookiesHelper.getCookie(PrivacyChoicesConfiguration.consentCookie.name)
 
     let userPreferences
 

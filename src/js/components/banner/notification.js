@@ -2,16 +2,13 @@
 import React, { Component } from 'react'
 
 // Local imports
+import PrivacyChoicesConfiguration from '../../configuration'
 import PrivacyChoicesButton from '../shared/button'
 
 // Styling constants
 const id = 'privacy-choices-notification'
 const messageId = 'privacy-choices-notification-message'
 const buttonsId = 'privacy-choices-notification-buttons'
-
-// Language constants
-const acceptButtonText = 'Accept and continue'
-const settingsButtonText = 'Manage choices'
 
 /**
  * Component for the consent prompt notification.
@@ -27,12 +24,12 @@ class PrivacyChoicesNotification extends Component {
     return (
       <div id={id}>
         <div id={messageId}>
-          <h3>Your privacy choices for this site</h3>
-          <p>This site uses cookies and other storage technologies to optimise site functionality and give you the best possible experience (list all categories and usages).</p>
+          <h3>{PrivacyChoicesConfiguration.language.prompt.heading}</h3>
+          <p>{PrivacyChoicesConfiguration.language.prompt.description}</p>
         </div>
         <div id={buttonsId}>
-          <PrivacyChoicesButton buttonText={acceptButtonText} onClick={this.props.onAccept} />
-          <PrivacyChoicesButton buttonText={settingsButtonText} onClick={this.props.onSettings} />
+          <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.prompt.acceptButton} onClick={this.props.onAccept} />
+          <PrivacyChoicesButton buttonText={PrivacyChoicesConfiguration.language.prompt.settingsButton} onClick={this.props.onSettings} />
         </div>
       </div>
     )
