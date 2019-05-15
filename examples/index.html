@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cookie test</title>
+</head>
+
+<body>
+    <div style="margin: 0 auto; width: 50%;">
+        <h1>Cookie test</h1>
+
+        <p>Cookies!</p>
+
+        <a href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); })();' class="button">Clear cookies</a>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+        <p>Cookies!</p>
+    </div>
+
+    <!-- GDPR Consent -->
+    <script>
+        window.privacyChoicesConfiguration = {
+            necessary: {
+                title: 'Strictly Necessary Cookies',
+                description: 'Necessary cookies enable core functionality. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences.',
+                handleEnabled: function () {
+                    // Callback fired to handle necessary on page load
+                    console.log('RUNNING NECESSARY')
+                }
+            },
+            categories: [
+                {
+                    key: 'functional',
+                    title: 'Functional Cookies',
+                    description: 'Functional cookies help us to improve our website by collecting and reporting information on its usage.',
+                    default: true,
+                    handleEnabled: function () {
+                        // Callback fired when this category is accepted
+                        console.log('Accept: functional')
+                    },
+                    handleDisabled: function () {
+                        // Callback fired when this category is rejected
+                        console.log('Reject: functional')
+                    }
+                },
+                {
+                    key: 'marketing',
+                    title: 'Marketing Cookies',
+                    description: 'We use marketing cookies to help us improve the relevancy of advertising campaigns you receive.',
+                    default: false,
+                    handleEnabled: function () {
+                        // Callback fired when this category is accepted
+                        console.log('Accept: marketing')
+                    },
+                    handleDisabled: function () {
+                        // Callback fired when this category is rejected
+                        console.log('Reject: marketing')
+                    }
+                }
+            ]
+        };
+    </script>
+    <script src="C:\projects\privacy-choices\build\privacy-choices.bundle.js"></script>
+    <!-- Other scripts below this point -->
+
+</body>
+
+</html>
