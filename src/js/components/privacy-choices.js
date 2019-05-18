@@ -21,6 +21,7 @@ class PrivacyChoices extends Component {
 
     // Initialise
     PrivacyChoicesPreferences.initPreferences()
+    this.runNecessaryCallback()
     this.runAllCategoryCallbacks()
 
     // Set up state
@@ -39,6 +40,7 @@ class PrivacyChoices extends Component {
     this.saveCategoryChange = this.saveCategoryChange.bind(this)
     this.runCategoryCallbacks = this.runCategoryCallbacks.bind(this)
     this.runAllCategoryCallbacks = this.runAllCategoryCallbacks.bind(this)
+    this.runNecessaryCallback = this.runNecessaryCallback.bind(this)
   };
 
   // Set settings open state
@@ -124,10 +126,13 @@ class PrivacyChoices extends Component {
     }
   }
 
+  // Execute necessary callback
+  runNecessaryCallback () {
+    typeof PrivacyChoicesConfiguration.necessary.handleEnabled === 'function' && PrivacyChoicesConfiguration.necessary.handleEnabled()
+  }
+
   // Execute all category callbacks
   runAllCategoryCallbacks () {
-    typeof PrivacyChoicesConfiguration.necessary.handleEnabled === 'function' && PrivacyChoicesConfiguration.necessary.handleEnabled()
-
     PrivacyChoicesConfiguration.categories.forEach(element => {
       this.runCategoryCallbacks(element.storageKey, PrivacyChoicesPreferences.isCategoryConsented(element.storageKey))
     })
