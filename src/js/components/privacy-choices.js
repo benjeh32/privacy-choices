@@ -104,7 +104,7 @@ class PrivacyChoices extends Component {
     })
     PrivacyChoicesPreferences.setUserHasInteracted(true)
 
-    this.runCategoryCallbacks(categoryKey)
+    this.runCategoryCallbacks(categoryKey, isConsented)
   }
 
   // Execute the callbacks for this category depending on if it has been checked or unchecked
@@ -117,7 +117,9 @@ class PrivacyChoices extends Component {
 
     if (category && isConsented) {
       typeof category.handleEnabled === 'function' && category.handleEnabled()
-    } else {
+    }
+
+    if (category && !isConsented) {
       typeof category.handleDisabled === 'function' && category.handleDisabled()
     }
   }
