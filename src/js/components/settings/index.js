@@ -33,10 +33,10 @@ class PrivacyChoicesSettings extends Component {
     // Other categories
     PrivacyChoicesConfiguration.categories.forEach((category) => {
       categoriesElements.push(
-        <div key={category.key + '-divider'} className={dividerClassName} />
+        <div key={category.storageKey + '-divider'} className={dividerClassName} />
       )
       categoriesElements.push(
-        <PrivacyChoicesCategory key={category.key} {...category} isConsented={this.props.categoryChoices[category.key] || false} saveChange={this.props.saveCategoryChange} />
+        <PrivacyChoicesCategory key={category.storageKey} {...category} isConsented={this.props.categoryChoices[category.storageKey] || false} saveChange={this.props.saveCategoryChange} />
       )
     })
 

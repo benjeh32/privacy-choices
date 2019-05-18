@@ -110,7 +110,7 @@ class PrivacyChoices extends Component {
   // Execute the callbacks for this category depending on if it has been checked or unchecked
   runCategoryCallbacks (categoryKey, isConsented) {
     let category = PrivacyChoicesConfiguration.categories.find((element) => {
-      if (element.key === categoryKey) {
+      if (element.storageKey === categoryKey) {
         return element
       }
     })
@@ -127,7 +127,7 @@ class PrivacyChoices extends Component {
     typeof PrivacyChoicesConfiguration.necessary.handleEnabled === 'function' && PrivacyChoicesConfiguration.necessary.handleEnabled()
 
     PrivacyChoicesConfiguration.categories.forEach(element => {
-      this.runCategoryCallbacks(element.key, PrivacyChoicesPreferences.isCategoryConsented(element.key))
+      this.runCategoryCallbacks(element.storageKey, PrivacyChoicesPreferences.isCategoryConsented(element.storageKey))
     })
   }
 

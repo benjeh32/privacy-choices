@@ -20,7 +20,7 @@ class PrivacyChoicesCategory extends Component {
 
   // Handler for changing the switch
   handleChange (isChecked) {
-    this.props.saveChange(this.props.key, isChecked)
+    this.props.saveChange(this.props.storageKey, isChecked)
   }
 
   // Render

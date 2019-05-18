@@ -121,7 +121,7 @@ class PrivacyChoicesPreferences {
     if (preferences) {
       PrivacyChoicesConfiguration.categories.forEach((category) => {
         if (category.default) {
-          preferences.choices[category.key] = true
+          preferences.choices[category.storageKey] = true
         }
       })
       this.writePreferences(preferences)
@@ -142,7 +142,7 @@ class PrivacyChoicesPreferences {
 
     if (preferences) {
       PrivacyChoicesConfiguration.categories.forEach((category) => {
-        preferences.choices[category.key] = true
+        preferences.choices[category.storageKey] = true
       })
       this.writePreferences(preferences)
     }
@@ -162,7 +162,7 @@ class PrivacyChoicesPreferences {
 
     if (preferences) {
       PrivacyChoicesConfiguration.categories.forEach(category => {
-        preferences.choices[category.key] = false
+        preferences.choices[category.storageKey] = false
       })
       this.writePreferences(preferences)
     }
