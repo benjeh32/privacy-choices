@@ -140,12 +140,43 @@ class PrivacyChoices extends Component {
 
   // Render
   render () {
+    // Styles to fix overlays in react-sidebar from https://github.com/balloob/react-sidebar/issues/86
+    const sidebarStyles = {
+      root: {
+        // Position above overlays or other high z-index elements your app might use
+        zIndex: 1000,
+        // Detach from right and bottom screen edges as it blocks underlying content
+        // This also has the effect of shrinking the component to a width and height of 0
+        right: 'auto',
+        bottom: 'auto',
+        // Allow child sidebar elements to render now that element has collapsed
+        overflow: 'visible'
+      },
+      content: {
+        // Detach from right and bottom screen edges as it blocks underlying content (collapses element)
+        left: 'auto',
+        bottom: 'auto',
+        // The dragHandle is inside content element for some reason.
+        // Allow it to render now that the parent is collapsed.
+        overflow: 'visible'
+      },
+      sidebar: {
+        // Make sidebar fixed, like dragHandle is by default
+        position: 'fixed'
+      },
+      overlay: {
+        // Enable/disable overlay interactivity based on open/closed state
+        // pointer-events browser support: IE11+
+        pointerEvents: this.state.isSidebarOpen ? 'auto' : 'none'
+      }
+    }
+
     // Sidebar content
     const sidebarContent = <PrivacyChoicesSettings categoryChoices={this.state.categoryChoices} onClose={this.toggleSettings} onAcceptAll={this.bulkAcceptAll} onRejectAll={this.bulkRejectAll} saveCategoryChange={this.saveCategoryChange} />
 
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child
-      <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen} styles={{ sidebar: { position: 'fixed' } }}>
+      <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen} styles={sidebarStyles}>
         <PrivacyChoicesBanner onToggleSettings={this.toggleSettings} isPromptShown={this.state.isPromptShown} onPromptAccept={this.promptAcceptDefault} onPromptSettings={this.promptOpenSettings} />
       </Sidebar>
     )
