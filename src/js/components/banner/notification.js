@@ -17,7 +17,7 @@ class PrivacyChoicesNotification extends Component {
   // Render
   render () {
     return (
-      <div id={id}>
+      <div id={id} style={this.props.visible ? { transform: 'translateY(0%)' } : { transform: 'translateY(100%)' }}>
         <div id={messageId}>
           <h3>{PrivacyChoicesConfiguration.language.prompt.heading}</h3>
           <p>{PrivacyChoicesConfiguration.language.prompt.description}</p>

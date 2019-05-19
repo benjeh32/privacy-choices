@@ -17,21 +17,14 @@ const id = 'privacy-choices-banner'
 class PrivacyChoicesBanner extends Component {
   // Render
   render () {
-    let content
-
-    if (this.props.isPromptShown) {
-      content = <PrivacyChoicesNotification onAccept={this.props.onPromptAccept} onSettings={this.props.onPromptSettings} />
-    } else {
-      content = <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.openButton} onClick={this.props.onToggleSettings} />
-    }
-
     return (
       <div id={id}>
-        {content}
+        <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.openButton} onClick={this.props.onToggleSettings} />
+        <PrivacyChoicesNotification visible={this.props.isPromptShown} onAccept={this.props.onPromptAccept} onSettings={this.props.onPromptSettings} />
       </div>
     )
-  };
-};
+  }
+}
 
 // Export component
 export default PrivacyChoicesBanner

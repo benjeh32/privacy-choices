@@ -59,8 +59,10 @@ class PrivacyChoices extends Component {
 
   // Toggle for settings
   toggleSettings () {
-    this.setPromptShown(false)
     this.setSettingsOpen(!this.state.isSettingsOpen)
+
+    // Reshow the prompt if closing settings without making a choice
+    this.setPromptShown(!PrivacyChoicesPreferences.getHasUserInteracted() && this.state.isSettingsOpen) // New isSettingsOpen state isn't available yet, hence non-negated usage.
   };
 
   // Handle user accepting the default consent
@@ -86,7 +88,7 @@ class PrivacyChoices extends Component {
     })
     PrivacyChoicesPreferences.setUserHasInteracted(true)
     this.runAllCategoryCallbacks()
-    this.setSettingsOpen(false)
+    this.toggleSettings()
   };
 
   // Bulk reject all handler
@@ -96,7 +98,7 @@ class PrivacyChoices extends Component {
     })
     PrivacyChoicesPreferences.setUserHasInteracted(true)
     this.runAllCategoryCallbacks()
-    this.setSettingsOpen(false)
+    this.toggleSettings()
   };
 
   // Change a category's consent
