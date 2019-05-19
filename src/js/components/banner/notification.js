@@ -16,11 +16,6 @@ const buttonsId = 'privacy-choices-notification-buttons'
 class PrivacyChoicesNotification extends Component {
   // Render
   render () {
-    // Determine if shown or not
-    if (!this.props.isPromptShown) {
-      return (null)
-    };
-
     return (
       <div id={id}>
         <div id={messageId}>
