@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 // Local imports
 import PrivacyChoicesConfiguration from '../../configuration'
-import PrivacyChoicesNotification from '../banner/notification'
+import PrivacyChoicesPrompt from './prompt'
 import PrivacyChoicesButton from '../shared/button'
 
 // Styling constants
@@ -20,7 +20,7 @@ class PrivacyChoicesBanner extends Component {
     return (
       <div id={id}>
         <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.openButton} onClick={this.props.onToggleSettings} />
-        <PrivacyChoicesNotification visible={this.props.isPromptShown} onAccept={this.props.onPromptAccept} onSettings={this.props.onPromptSettings} />
+        <PrivacyChoicesPrompt visible={this.props.isPromptShown} onAccept={this.props.onPromptAccept} onSettings={this.props.onPromptSettings} />
       </div>
     )
   }

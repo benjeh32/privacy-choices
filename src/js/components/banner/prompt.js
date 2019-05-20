@@ -6,14 +6,14 @@ import PrivacyChoicesConfiguration from '../../configuration'
 import PrivacyChoicesButton from '../shared/button'
 
 // Styling constants
-const id = 'privacy-choices-notification'
-const messageId = 'privacy-choices-notification-message'
-const buttonsId = 'privacy-choices-notification-buttons'
+const id = 'privacy-choices-prompt'
+const messageId = 'privacy-choices-prompt-message'
+const buttonsId = 'privacy-choices-prompt-buttons'
 
 /**
- * Component for the consent prompt notification.
+ * Component for the consent prompt.
  */
-class PrivacyChoicesNotification extends Component {
+class PrivacyChoicesPrompt extends Component {
   // Render
   render () {
     return (
@@ -32,4 +32,4 @@ class PrivacyChoicesNotification extends Component {
 };
 
 // Export component
-export default PrivacyChoicesNotification
+export default PrivacyChoicesPrompt
