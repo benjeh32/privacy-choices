@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 
 // Local imports
-import PrivacyChoicesConfiguration from '../../configuration'
 import PrivacyChoicesButton from '../shared/button'
+import PrivacyChoicesConfiguration from '../../configuration'
 
 // Styling constants
 const id = 'privacy-choices-prompt'
@@ -17,14 +17,14 @@ class PrivacyChoicesPrompt extends Component {
   // Render
   render () {
     return (
-      <div id={id} style={this.props.visible ? { transform: 'translateY(0%)' } : { transform: 'translateY(100%)' }}>
+      <div id={id} style={this.props.isVisible ? { transform: 'translateY(0%)' } : { transform: 'translateY(100%)' }}>
         <div id={messageId}>
           <h3>{PrivacyChoicesConfiguration.language.prompt.heading}</h3>
           <p>{PrivacyChoicesConfiguration.language.prompt.description}</p>
         </div>
         <div id={buttonsId}>
-          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.prompt.acceptButton} onClick={this.props.onAccept} />
-          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.prompt.settingsButton} onClick={this.props.onSettings} />
+          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.prompt.acceptButton} onClick={this.props.onClickAccept} />
+          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.prompt.settingsButton} onClick={this.props.onClickSettings} />
         </div>
       </div>
     )
