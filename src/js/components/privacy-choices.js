@@ -4,12 +4,9 @@ import Sidebar from 'react-sidebar'
 
 // Local imports
 import PrivacyChoicesBanner from './banner'
+import PrivacyChoicesConfiguration from '../configuration'
 import PrivacyChoicesPreferences from '../preferences'
 import PrivacyChoicesSettings from './settings'
-import PrivacyChoicesConfiguration from '../configuration'
-
-// Constants
-const isSettingsOpenDefault = false
 
 /**
  * Privacy choices component.
@@ -26,86 +23,107 @@ class PrivacyChoices extends Component {
 
     // Set up state
     this.state = {
-      isSettingsOpen: isSettingsOpenDefault,
+      isSettingsOpen: false,
       isPromptShown: !PrivacyChoicesPreferences.getHasUserInteracted(),
-      categoryChoices: PrivacyChoicesPreferences.readPreferences().choices
+      categoryChoices: PrivacyChoicesPreferences.readConsentChoices()
     }
 
     // Bind functions
-    this.toggleSettings = this.toggleSettings.bind(this)
-    this.promptAcceptDefault = this.promptAcceptDefault.bind(this)
-    this.promptOpenSettings = this.promptOpenSettings.bind(this)
+    this.handleToggleSettings = this.handleToggleSettings.bind(this)
+    this.handleAcceptDefault = this.handleAcceptDefault.bind(this)
+
     this.bulkAcceptAll = this.bulkAcceptAll.bind(this)
     this.bulkRejectAll = this.bulkRejectAll.bind(this)
     this.saveCategoryChange = this.saveCategoryChange.bind(this)
     this.runCategoryCallbacks = this.runCategoryCallbacks.bind(this)
     this.runAllCategoryCallbacks = this.runAllCategoryCallbacks.bind(this)
     this.runNecessaryCallback = this.runNecessaryCallback.bind(this)
-  };
+  }
 
-  // Set settings open state
+  /**
+   * Update state of isSettingsOpen.
+   * @param {boolean} state New state of isSettingsOpen.
+   */
   setSettingsOpen (state) {
     this.setState({
       isSettingsOpen: state
     })
-  };
+  }
 
-  // Set prompt shown state
+  /**
+   * Update state of isPromptShown.
+   * @param {boolean} state New state of isPromptShown.
+   */
   setPromptShown (state) {
     this.setState({
       isPromptShown: state
     })
-  };
+  }
 
-  // Toggle for settings
-  toggleSettings () {
+  /**
+   * Reloads choices from preferences.
+   */
+  reloadChoices () {
+    this.setState({
+      categoryChoices: PrivacyChoicesPreferences.readConsentChoices()
+    })
+  }
+
+  /**
+   * Handle toggling the settings menu.
+   */
+  handleToggleSettings () {
+    // Toggle the state
     this.setSettingsOpen(!this.state.isSettingsOpen)
 
     // Reshow the prompt if closing settings without making a choice
     this.setPromptShown(!PrivacyChoicesPreferences.getHasUserInteracted() && this.state.isSettingsOpen) // New isSettingsOpen state isn't available yet, hence non-negated usage.
-  };
+  }
 
-  // Handle user accepting the default consent
-  promptAcceptDefault () {
-    this.setState({
-      categoryChoices: PrivacyChoicesPreferences.acceptDefaultCategories()
+  /**
+   * Handle accepting the default consent choices.
+   */
+  handleAcceptDefault () {
+    // For all default categories
+    PrivacyChoicesConfiguration.categories.forEach((category) => {
+      if (category.default) {
+        // Store acceptance preference
+        PrivacyChoicesPreferences.setCategoryConsent(category.storageKey, true)
+        // Run the callback for this category
+        this.runCategoryCallbacks(category.storageKey, true)
+      }
     })
-    PrivacyChoicesPreferences.setUserHasInteracted(true)
-    this.runAllCategoryCallbacks()
-    this.setPromptShown(false)
-  };
 
-  // Handle user choosing settings
-  promptOpenSettings () {
-    this.setSettingsOpen(true)
+    // Reload choices
+    this.reloadChoices()
+
+    // Record interaction
+    PrivacyChoicesPreferences.setUserHasInteracted(true)
     this.setPromptShown(false)
-  };
+  }
 
   // Bulk accept all handler
   bulkAcceptAll () {
-    this.setState({
-      categoryChoices: PrivacyChoicesPreferences.acceptAllCategories()
-    })
+    PrivacyChoicesPreferences.acceptAllCategories()
+    this.reloadChoices()
     PrivacyChoicesPreferences.setUserHasInteracted(true)
     this.runAllCategoryCallbacks()
-    this.toggleSettings()
+    this.handleToggleSettings()
   };
 
   // Bulk reject all handler
   bulkRejectAll () {
-    this.setState({
-      categoryChoices: PrivacyChoicesPreferences.declineAllCategories()
-    })
+    PrivacyChoicesPreferences.declineAllCategories()
+    this.reloadChoices()
     PrivacyChoicesPreferences.setUserHasInteracted(true)
     this.runAllCategoryCallbacks()
-    this.toggleSettings()
+    this.handleToggleSettings()
   };
 
   // Change a category's consent
   saveCategoryChange (categoryKey, isConsented) {
-    this.setState({
-      categoryChoices: PrivacyChoicesPreferences.setCategoryConsent(categoryKey, isConsented)
-    })
+    PrivacyChoicesPreferences.setCategoryConsent(categoryKey, isConsented)
+    this.reloadChoices()
     PrivacyChoicesPreferences.setUserHasInteracted(true)
 
     this.runCategoryCallbacks(categoryKey, isConsented)
@@ -174,12 +192,12 @@ class PrivacyChoices extends Component {
     }
 
     // Sidebar content
-    const sidebarContent = <PrivacyChoicesSettings categoryChoices={this.state.categoryChoices} onClose={this.toggleSettings} onAcceptAll={this.bulkAcceptAll} onRejectAll={this.bulkRejectAll} saveCategoryChange={this.saveCategoryChange} />
+    const sidebarContent = <PrivacyChoicesSettings categoryChoices={this.state.categoryChoices} onClose={this.handleToggleSettings} onAcceptAll={this.bulkAcceptAll} onRejectAll={this.bulkRejectAll} saveCategoryChange={this.saveCategoryChange} />
 
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child
       <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen} styles={sidebarStyles}>
-        <PrivacyChoicesBanner onClickOpen={this.toggleSettings} isPromptVisible={this.state.isPromptShown} onPromptAccept={this.promptAcceptDefault} onPromptSettings={this.promptOpenSettings} />
+        <PrivacyChoicesBanner isPromptVisible={this.state.isPromptShown} onAccept={this.handleAcceptDefault} onSettings={this.handleToggleSettings} />
       </Sidebar>
     )
   };

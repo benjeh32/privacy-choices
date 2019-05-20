@@ -38,6 +38,21 @@ class PrivacyChoicesPreferences {
   }
 
   /**
+   * Recall consent choices.
+   */
+  static readConsentChoices () {
+    let preferences = this.readPreferences()
+
+    let choices
+
+    if (preferences && preferences.choices) {
+      choices = preferences.choices
+    }
+
+    return choices
+  }
+
+  /**
    * Initialise a user's preferences if not already set.
    */
   static initPreferences () {
