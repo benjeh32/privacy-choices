@@ -123,67 +123,6 @@ class PrivacyChoicesPreferences {
 
     this.writePreferences(preferences)
   }
-
-  /**
-   * Accepts and stores the default consent choices for the user.
-   *
-   * Any of the consent categories marked as 'default' will have their consent marked as accepted.
-   *
-   * Returns the new choices being saved.
-   */
-  static acceptDefaultCategories () {
-    let preferences = this.readPreferences()
-    if (preferences) {
-      PrivacyChoicesConfiguration.categories.forEach((category) => {
-        if (category.default) {
-          preferences.choices[category.storageKey] = true
-        }
-      })
-      this.writePreferences(preferences)
-    }
-
-    return preferences.choices
-  }
-
-  /**
-   * Accepts and stores all consent categories for the user.
-   *
-   * All consent categories will have their consent choice marked as accepted.
-   *
-   * Returns the new choices being saved.
-   */
-  static acceptAllCategories () {
-    let preferences = this.readPreferences()
-
-    if (preferences) {
-      PrivacyChoicesConfiguration.categories.forEach((category) => {
-        preferences.choices[category.storageKey] = true
-      })
-      this.writePreferences(preferences)
-    }
-
-    return preferences.choices
-  }
-
-  /**
-   * Declines and stores all consent categories for the user.
-   *
-   * All consent categories will have their consent choice marked as declined.
-   *
-   * Returns the new choices being saved.
-   */
-  static declineAllCategories () {
-    let preferences = this.readPreferences()
-
-    if (preferences) {
-      PrivacyChoicesConfiguration.categories.forEach(category => {
-        preferences.choices[category.storageKey] = false
-      })
-      this.writePreferences(preferences)
-    }
-
-    return preferences.choices
-  }
 }
 
 export default PrivacyChoicesPreferences

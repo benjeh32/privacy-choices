@@ -9,7 +9,7 @@ import PrivacyChoicesPreferences from '../preferences'
 import PrivacyChoicesSettings from './settings'
 
 /**
- * Privacy choices component.
+ * Main Privacy Choices component.
  */
 class PrivacyChoices extends Component {
   // Constructor
@@ -28,20 +28,21 @@ class PrivacyChoices extends Component {
       categoryChoices: PrivacyChoicesPreferences.readConsentChoices()
     }
 
-    // Bind functions
+    // Bind handlers
     this.handleToggleSettings = this.handleToggleSettings.bind(this)
     this.handleAcceptDefault = this.handleAcceptDefault.bind(this)
-
-    this.bulkAcceptAll = this.bulkAcceptAll.bind(this)
-    this.bulkRejectAll = this.bulkRejectAll.bind(this)
-    this.saveCategoryChange = this.saveCategoryChange.bind(this)
-    this.runCategoryCallbacks = this.runCategoryCallbacks.bind(this)
-    this.runAllCategoryCallbacks = this.runAllCategoryCallbacks.bind(this)
-    this.runNecessaryCallback = this.runNecessaryCallback.bind(this)
+    this.handleAcceptAll = this.handleAcceptAll.bind(this)
+    this.handleDeclineAll = this.handleDeclineAll.bind(this)
+    this.handleChangeCategory = this.handleChangeCategory.bind(this)
   }
+
+  /*******************
+   * STATE FUNCTIONS *
+   *******************/
 
   /**
    * Update state of isSettingsOpen.
+   *
    * @param {boolean} state New state of isSettingsOpen.
    */
   setSettingsOpen (state) {
@@ -52,6 +53,7 @@ class PrivacyChoices extends Component {
 
   /**
    * Update state of isPromptShown.
+   *
    * @param {boolean} state New state of isPromptShown.
    */
   setPromptShown (state) {
@@ -61,18 +63,28 @@ class PrivacyChoices extends Component {
   }
 
   /**
-   * Reloads choices from preferences.
+   * Update state of a consent category's choice.
+   *
+   * @param {*} categoryKey
+   * @param {*} isConsented
    */
-  reloadChoices () {
+  setCategoryChoice (categoryKey, isConsented) {
     this.setState({
-      categoryChoices: PrivacyChoicesPreferences.readConsentChoices()
+      categoryChoices: {
+        ...this.state.categoryChoices,
+        [categoryKey]: isConsented
+      }
     })
   }
 
+  /*******************
+   * LOGIC FUNCTIONS *
+   *******************/
+
   /**
-   * Handle toggling the settings menu.
+   * Toggle the settings menu.
    */
-  handleToggleSettings () {
+  toggleSettings () {
     // Toggle the state
     this.setSettingsOpen(!this.state.isSettingsOpen)
 
@@ -81,52 +93,81 @@ class PrivacyChoices extends Component {
   }
 
   /**
-   * Handle accepting the default consent choices.
+   * Accept the default consent categories.
    */
-  handleAcceptDefault () {
-    // For all default categories
+  acceptDefault () {
+    // Set preference for default categories
     PrivacyChoicesConfiguration.categories.forEach((category) => {
       if (category.default) {
-        // Store acceptance preference
-        PrivacyChoicesPreferences.setCategoryConsent(category.storageKey, true)
-        // Run the callback for this category
-        this.runCategoryCallbacks(category.storageKey, true)
+        this.changeCategory(category.storageKey, true)
       }
     })
 
-    // Reload choices
-    this.reloadChoices()
-
-    // Record interaction
-    PrivacyChoicesPreferences.setUserHasInteracted(true)
-    this.setPromptShown(false)
+    // This is an interaction
+    this.recordInteraction()
   }
 
-  // Bulk accept all handler
-  bulkAcceptAll () {
-    PrivacyChoicesPreferences.acceptAllCategories()
-    this.reloadChoices()
-    PrivacyChoicesPreferences.setUserHasInteracted(true)
-    this.runAllCategoryCallbacks()
-    this.handleToggleSettings()
-  };
+  /**
+   * Accept all consent categories.
+   */
+  acceptAll () {
+    // Set preference for all categories
+    PrivacyChoicesConfiguration.categories.forEach((category) => {
+      this.changeCategory(category.storageKey, true)
+    })
 
-  // Bulk reject all handler
-  bulkRejectAll () {
-    PrivacyChoicesPreferences.declineAllCategories()
-    this.reloadChoices()
-    PrivacyChoicesPreferences.setUserHasInteracted(true)
-    this.runAllCategoryCallbacks()
-    this.handleToggleSettings()
-  };
+    // This is an interaction
+    this.recordInteraction()
 
-  // Change a category's consent
-  saveCategoryChange (categoryKey, isConsented) {
+    // Close settings
+    this.toggleSettings()
+  }
+
+  /**
+   * Decline all consent categories.
+   */
+  declineAll () {
+    // Set preference for all categories
+    PrivacyChoicesConfiguration.categories.forEach((category) => {
+      this.changeCategory(category.storageKey, false)
+    })
+
+    // This is an interaction
+    this.recordInteraction()
+
+    // Close settings
+    this.toggleSettings()
+  }
+
+  /**
+   * Change choice for a consent category.
+   *
+   * @param {*} categoryKey
+   * @param {*} isConsented
+   */
+  changeCategory (categoryKey, isConsented) {
+    // Update storage
     PrivacyChoicesPreferences.setCategoryConsent(categoryKey, isConsented)
-    this.reloadChoices()
+
+    // Update state
+    this.setCategoryChoice(categoryKey, isConsented)
+
+    // Run callbacks
+    this.runCategoryCallbacks(categoryKey, isConsented)
+
+    // This is an interaction
+    this.recordInteraction()
+  }
+
+  /**
+   * Record interaction with choices.
+   */
+  recordInteraction () {
+    // Update storage
     PrivacyChoicesPreferences.setUserHasInteracted(true)
 
-    this.runCategoryCallbacks(categoryKey, isConsented)
+    // Update state
+    this.setPromptShown(false)
   }
 
   // Execute the callbacks for this category depending on if it has been checked or unchecked
@@ -158,7 +199,51 @@ class PrivacyChoices extends Component {
     })
   }
 
-  // Render
+  /*********************
+   * HANDLER FUNCTIONS *
+   *********************/
+
+  /**
+   * Handle toggling the settings menu.
+   */
+  handleToggleSettings () {
+    this.toggleSettings()
+  }
+
+  /**
+   * Handle accepting the default consent categories.
+   */
+  handleAcceptDefault () {
+    this.acceptDefault()
+  }
+
+  /**
+   * Handle accepting all consent categories.
+   */
+  handleAcceptAll () {
+    this.acceptAll()
+  }
+
+  /**
+   * Handle declining all consent categories.
+   */
+  handleDeclineAll () {
+    this.declineAll()
+  }
+
+  /**
+   * Handle changing a consent category's choice.
+   *
+   * @param {*} categoryKey
+   * @param {*} isConsented
+   */
+  handleChangeCategory (categoryKey, isConsented) {
+    this.changeCategory(categoryKey, isConsented)
+  }
+
+  /*******************
+   * RENDER FUNCTION *
+   *******************/
   render () {
     // Styles to fix overlays in react-sidebar from https://github.com/balloob/react-sidebar/issues/86
     const sidebarStyles = {
@@ -192,7 +277,7 @@ class PrivacyChoices extends Component {
     }
 
     // Sidebar content
-    const sidebarContent = <PrivacyChoicesSettings categoryChoices={this.state.categoryChoices} onClose={this.handleToggleSettings} onAcceptAll={this.bulkAcceptAll} onRejectAll={this.bulkRejectAll} saveCategoryChange={this.saveCategoryChange} />
+    const sidebarContent = <PrivacyChoicesSettings categoryChoices={this.state.categoryChoices} onClose={this.handleToggleSettings} onAcceptAll={this.handleAcceptAll} onDeclineAll={this.handleDeclineAll} saveCategoryChange={this.handleChangeCategory} />
 
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child
