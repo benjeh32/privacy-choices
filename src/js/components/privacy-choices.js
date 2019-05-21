@@ -71,12 +71,10 @@ class PrivacyChoices extends Component {
    */
   setCategoryChoice (categoryKey, isConsented) {
     this.setState((prevState) => ({
-
       categoryChoices: {
         ...prevState.categoryChoices,
         [categoryKey]: isConsented
       }
-
     }))
   }
 
@@ -175,7 +173,9 @@ class PrivacyChoices extends Component {
     this.setPromptShown(false)
   }
 
-  // Execute the callbacks for this category depending on if it has been checked or unchecked
+  /**
+   * Execute the callbacks for a category depending on if it has been checked or unchecked.
+   */
   runCategoryCallbacks (categoryKey, isConsented) {
     let category = PrivacyChoicesConfiguration.categories.find((element) => {
       if (element.storageKey === categoryKey) {
@@ -192,12 +192,16 @@ class PrivacyChoices extends Component {
     }
   }
 
-  // Execute necessary callback
+  /**
+   * Execute the callback for the necessary category.
+   */
   runNecessaryCallback () {
     typeof PrivacyChoicesConfiguration.necessary.handleEnabled === 'function' && PrivacyChoicesConfiguration.necessary.handleEnabled()
   }
 
-  // Execute all category callbacks
+  /**
+   * Execute the callback for all categories.
+   */
   runAllCategoryCallbacks () {
     PrivacyChoicesConfiguration.categories.forEach(element => {
       this.runCategoryCallbacks(element.storageKey, PrivacyChoicesPreferences.isCategoryConsented(element.storageKey))
