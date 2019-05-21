@@ -29,7 +29,8 @@ class PrivacyChoices extends Component {
     }
 
     // Bind handlers
-    this.handleToggleSettings = this.handleToggleSettings.bind(this)
+    this.handleOpenSettings = this.handleOpenSettings.bind(this)
+    this.handleCloseSettings = this.handleCloseSettings.bind(this)
     this.handleAcceptDefault = this.handleAcceptDefault.bind(this)
     this.handleAcceptAll = this.handleAcceptAll.bind(this)
     this.handleDeclineAll = this.handleDeclineAll.bind(this)
@@ -69,12 +70,14 @@ class PrivacyChoices extends Component {
    * @param {*} isConsented
    */
   setCategoryChoice (categoryKey, isConsented) {
-    this.setState({
+    this.setState((prevState) => ({
+
       categoryChoices: {
-        ...this.state.categoryChoices,
+        ...prevState.categoryChoices,
         [categoryKey]: isConsented
       }
-    })
+
+    }))
   }
 
   /*******************
@@ -83,13 +86,15 @@ class PrivacyChoices extends Component {
 
   /**
    * Toggle the settings menu.
+   *
+   * @param {*} doOpenSettings
    */
-  toggleSettings () {
-    // Toggle the state
-    this.setSettingsOpen(!this.state.isSettingsOpen)
+  openSettings (doOpenSettings) {
+    // Update state
+    this.setSettingsOpen(doOpenSettings)
 
-    // Reshow the prompt if closing settings without making a choice
-    this.setPromptShown(!PrivacyChoicesPreferences.getHasUserInteracted() && this.state.isSettingsOpen) // New isSettingsOpen state isn't available yet, hence non-negated usage.
+    // If closing settings without interaction bring up the prompt, otherwise ensure closed
+    this.setPromptShown(!doOpenSettings && !PrivacyChoicesPreferences.getHasUserInteracted())
   }
 
   /**
@@ -120,7 +125,7 @@ class PrivacyChoices extends Component {
     this.recordInteraction()
 
     // Close settings
-    this.toggleSettings()
+    this.openSettings(false)
   }
 
   /**
@@ -136,7 +141,7 @@ class PrivacyChoices extends Component {
     this.recordInteraction()
 
     // Close settings
-    this.toggleSettings()
+    this.openSettings(false)
   }
 
   /**
@@ -204,10 +209,17 @@ class PrivacyChoices extends Component {
    *********************/
 
   /**
-   * Handle toggling the settings menu.
+   * Handle opening settings menu.
    */
-  handleToggleSettings () {
-    this.toggleSettings()
+  handleOpenSettings () {
+    this.openSettings(true)
+  }
+
+  /**
+   * Handle closing settings menu.
+   */
+  handleCloseSettings () {
+    this.openSettings(false)
   }
 
   /**
@@ -277,12 +289,12 @@ class PrivacyChoices extends Component {
     }
 
     // Sidebar content
-    const sidebarContent = <PrivacyChoicesSettings categoryChoices={this.state.categoryChoices} onClose={this.handleToggleSettings} onAcceptAll={this.handleAcceptAll} onDeclineAll={this.handleDeclineAll} saveCategoryChange={this.handleChangeCategory} />
+    const sidebarContent = <PrivacyChoicesSettings categoryChoices={this.state.categoryChoices} onClose={this.handleCloseSettings} onAcceptAll={this.handleAcceptAll} onDeclineAll={this.handleDeclineAll} saveCategoryChange={this.handleChangeCategory} />
 
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child
       <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen} styles={sidebarStyles}>
-        <PrivacyChoicesBanner isPromptVisible={this.state.isPromptShown} onAccept={this.handleAcceptDefault} onSettings={this.handleToggleSettings} />
+        <PrivacyChoicesBanner isPromptVisible={this.state.isPromptShown} onAccept={this.handleAcceptDefault} onSettings={this.handleOpenSettings} />
       </Sidebar>
     )
   };
