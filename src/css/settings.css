@@ -1,15 +1,14 @@
-
-#privacy-choices #privacy-choices-settings {
-    height: 100%;
-    width: 400px;
+#privacy-choices > div:first-of-type > div:first-of-type {
     background: #222222;
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
 }
 
-#privacy-choices #privacy-choices-settings p {
-    margin-bottom: 20px;
+#privacy-choices #privacy-choices-settings {
+    width: 400px;
+}
+
+#privacy-choices #privacy-choices-settings > p {
+    padding-bottom: 20px;
 }
 
 #privacy-choices #privacy-choices-settings #privacy-choices-settings-header {
@@ -17,28 +16,32 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
-#privacy-choices #privacy-choices-settings #privacy-choices-settings-content .privacy-choices-settings-divider {
+#privacy-choices #privacy-choices-settings .privacy-choices-settings-divider {
     margin: 0;
     height: 1px;
     background: #ffffff;
+    margin-bottom: 20px;
 }
 
-#privacy-choices #privacy-choices-settings #privacy-choices-settings-content #privacy-choices-settings-bulk {
+#privacy-choices #privacy-choices-settings #privacy-choices-settings-bulk {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
-#privacy-choices #privacy-choices-settings #privacy-choices-settings-content .privacy-choices-category-header {
+#privacy-choices #privacy-choices-settings .privacy-choices-category {
+    padding-bottom: 20px;
+}
+
+#privacy-choices #privacy-choices-settings .privacy-choices-category .privacy-choices-category-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }

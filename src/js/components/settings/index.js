@@ -9,7 +9,6 @@ import PrivacyChoicesButton from '../shared/button'
 // Styling constants
 const id = 'privacy-choices-settings'
 const headerId = 'privacy-choices-settings-header'
-const contentId = 'privacy-choices-settings-content'
 const bulkChangeId = 'privacy-choices-settings-bulk'
 const dividerClassName = 'privacy-choices-settings-divider'
 
@@ -46,14 +45,12 @@ class PrivacyChoicesSettings extends Component {
           <h3>{PrivacyChoicesConfiguration.language.settings.heading}</h3>
           <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.closeButton} onClick={this.props.onClose} />
         </div>
-        <div id={contentId}>
-          <p>{PrivacyChoicesConfiguration.language.settings.description}</p>
-          <div id={bulkChangeId}>
-            <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.acceptAllButton} onClick={this.props.onAcceptAll} />
-            <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.declineAllButton} onClick={this.props.onDeclineAll} />
-          </div>
-          {categoriesElements}
+        <p>{PrivacyChoicesConfiguration.language.settings.description}</p>
+        <div id={bulkChangeId}>
+          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.acceptAllButton} onClick={this.props.onAcceptAll} />
+          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.declineAllButton} onClick={this.props.onDeclineAll} />
         </div>
+        {categoriesElements}
       </div>
     )
   }
