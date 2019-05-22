@@ -26,7 +26,7 @@ const defaultConfiguration = {
   },
   storage: {
     key: 'privacy-choices',
-    expiryDays: 365
+    expiryDays: 90
   }
 }
 

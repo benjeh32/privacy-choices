@@ -5,7 +5,10 @@ import CookiesHelper from './cookies'
 // Constants
 const defaultPreferences = {
   'hasUserInteracted': false,
-  'choices': { }
+  'categoryAcceptance': { },
+  'consentRefreshedDate': null,
+  'consentExpiresAfterDays': PrivacyChoicesConfiguration.storage.expiryDays,
+  'consentExpiryDate': null
 }
 
 class PrivacyChoicesPreferences {
@@ -45,8 +48,8 @@ class PrivacyChoicesPreferences {
 
     let choices
 
-    if (preferences && preferences.choices) {
-      choices = preferences.choices
+    if (preferences && preferences.categoryAcceptance) {
+      choices = preferences.categoryAcceptance
     }
 
     return choices
@@ -74,11 +77,11 @@ class PrivacyChoicesPreferences {
     let preferences = this.readPreferences()
 
     if (preferences) {
-      preferences.choices[categoryKey] = isConsented
+      preferences.categoryAcceptance[categoryKey] = isConsented
       this.writePreferences(preferences)
     }
 
-    return preferences.choices
+    return preferences.categoryAcceptance
   }
 
   /**
@@ -89,8 +92,8 @@ class PrivacyChoicesPreferences {
 
     let preferences = this.readPreferences()
 
-    if (preferences && preferences.choices[categoryKey]) {
-      isCategoryConsented = preferences.choices[categoryKey]
+    if (preferences && preferences.categoryAcceptance[categoryKey]) {
+      isCategoryConsented = preferences.categoryAcceptance[categoryKey]
     }
 
     return isCategoryConsented
@@ -112,13 +115,15 @@ class PrivacyChoicesPreferences {
   }
 
   /**
-   * Sets whether a user has interacted.
+   * Refresh the consent expiry date.
    */
-  static setUserHasInteracted (hasUserInteracted) {
+  static refreshConsent () {
     let preferences = this.readPreferences()
 
     if (preferences) {
-      preferences.hasUserInteracted = hasUserInteracted
+      preferences.hasUserInteracted = true
+      preferences.consentRefreshedDate = new Date().getTime()
+      preferences.consentExpiryDate = preferences.consentRefreshedDate + (preferences.consentExpiresAfterDays * 24 * 60 * 60 * 1000)
     }
 
     this.writePreferences(preferences)

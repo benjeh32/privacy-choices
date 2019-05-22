@@ -167,7 +167,7 @@ class PrivacyChoices extends Component {
    */
   recordInteraction () {
     // Update storage
-    PrivacyChoicesPreferences.setUserHasInteracted(true)
+    PrivacyChoicesPreferences.refreshConsent()
 
     // Update state
     this.setPromptShown(false)
