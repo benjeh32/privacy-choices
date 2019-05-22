@@ -99,9 +99,9 @@ class PrivacyChoices extends Component {
    * Accept the default consent categories.
    */
   acceptDefault () {
-    // Set preference for default categories
+    // Set accept for default categories not already accepted
     PrivacyChoicesConfiguration.categories.forEach((category) => {
-      if (category.default) {
+      if (category.default && !PrivacyChoicesPreferences.isCategoryConsented(category.storageKey)) {
         this.changeCategory(category.storageKey, true)
       }
     })
@@ -114,9 +114,11 @@ class PrivacyChoices extends Component {
    * Accept all consent categories.
    */
   acceptAll () {
-    // Set preference for all categories
+    // Set accept for all categories not already accepted
     PrivacyChoicesConfiguration.categories.forEach((category) => {
-      this.changeCategory(category.storageKey, true)
+      if (!PrivacyChoicesPreferences.isCategoryConsented(category.storageKey)) {
+        this.changeCategory(category.storageKey, true)
+      }
     })
 
     // This is an interaction
@@ -130,9 +132,11 @@ class PrivacyChoices extends Component {
    * Decline all consent categories.
    */
   declineAll () {
-    // Set preference for all categories
+    // Set decline for all categories not already declined
     PrivacyChoicesConfiguration.categories.forEach((category) => {
-      this.changeCategory(category.storageKey, false)
+      if (PrivacyChoicesPreferences.isCategoryConsented(category.storageKey)) {
+        this.changeCategory(category.storageKey, false)
+      }
     })
 
     // This is an interaction
