@@ -7,7 +7,6 @@ const defaultPreferences = {
   'hasUserInteracted': false,
   'categoryAcceptance': { },
   'consentRefreshedDate': null,
-  'consentExpiresAfterDays': PrivacyChoicesConfiguration.storage.expiryDays,
   'consentExpiryDate': null
 }
 
@@ -56,13 +55,45 @@ class PrivacyChoicesPreferences {
   }
 
   /**
-   * Initialise a user's preferences if not already set.
+   * Initialise a user's preferences if needed.
    */
   static initPreferences () {
     let preferences = this.readPreferences()
+    let needInitialisation = false
 
+    // Need to initialise if no preferences found
     if (!preferences) {
-      this.writePreferences(defaultPreferences)
+      needInitialisation = true
+    }
+
+    // If preferences were found, reset them to cause re-consent if sufficient configuration has changed since last consent
+    if (preferences) {
+      // Exactly all optional categories should be present
+      let userKeys = Object.keys(preferences.categoryAcceptance)
+      let configKeys = []
+      PrivacyChoicesConfiguration.categories.forEach((category) => {
+        configKeys.push(category.storageKey)
+      })
+      let difference = configKeys
+        .filter(configKey => !userKeys.includes(configKey))
+        .concat(userKeys.filter(userKey => !configKeys.includes(userKey)))
+      if (difference.length !== 0) {
+        needInitialisation = true
+      }
+    }
+
+    // Initialise preferences from default if needed
+    if (needInitialisation) {
+      // Start with default preference set
+      preferences = defaultPreferences
+
+      // Initialise all categories with non-acceptance
+      PrivacyChoicesConfiguration.categories.forEach((category) => {
+        preferences.categoryAcceptance[category.storageKey] = false
+      })
+
+      // Store
+      this.writePreferences(preferences)
     }
 
     return preferences
@@ -121,9 +152,14 @@ class PrivacyChoicesPreferences {
     let preferences = this.readPreferences()
 
     if (preferences) {
+      // Record that there is interaction
       preferences.hasUserInteracted = true
+
+      // Record the date of consent
       preferences.consentRefreshedDate = new Date().getTime()
-      preferences.consentExpiryDate = preferences.consentRefreshedDate + (preferences.consentExpiresAfterDays * 24 * 60 * 60 * 1000)
+
+      // Record consent expiry date
+      preferences.consentExpiryDate = preferences.consentRefreshedDate + (PrivacyChoicesConfiguration.storage.expiryDays * 24 * 60 * 60 * 1000)
     }
 
     this.writePreferences(preferences)
