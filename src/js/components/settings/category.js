@@ -6,6 +6,26 @@ import Switch from 'react-switch'
 const className = 'privacy-choices-category'
 const headerClassName = 'privacy-choices-category-header'
 
+// Custom styles
+const switchStyles = {
+  uncheckedIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    fontWeight: 'bold',
+    paddingRight: '5px'
+  },
+  checkedIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    fontWeight: 'bold',
+    paddingLeft: '5px'
+  }
+}
+
 /**
  * Component for a category on the settings menu.
  */
@@ -32,7 +52,10 @@ class PrivacyChoicesCategory extends Component {
       <div className={className}>
         <div className={headerClassName}>
           <h4>{this.props.title}</h4>
-          <Switch onChange={this.handleChange} checked={isChecked} disabled={this.props.isRequired} />
+          <Switch onChange={this.handleChange} checked={isChecked} disabled={this.props.isRequired}
+            handleDiameter={25} height={40} width={80} activeBoxShadow={false}
+            uncheckedIcon={<div style={switchStyles.uncheckedIcon}>OFF</div>}
+            checkedIcon={<div style={switchStyles.checkedIcon}>ON</div>} />
         </div>
         <p>{this.props.description}</p>
       </div>
