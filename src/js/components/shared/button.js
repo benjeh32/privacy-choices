@@ -17,7 +17,7 @@ class PrivacyChoicesButton extends Component {
   // Render
   render () {
     return (
-      <button style={style} onClick={this.props.onClick}>
+      <button style={{ ...style, ...this.props.style }} onClick={this.props.onClick}>
         {this.props.text}
       </button>
     )

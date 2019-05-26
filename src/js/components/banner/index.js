@@ -9,6 +9,12 @@ import PrivacyChoicesPrompt from './prompt'
 // Styling constants
 const id = 'privacy-choices-banner'
 
+// Custom styling
+const toggleStyle = {
+  background: PrivacyChoicesConfiguration.style.toggleBackgroundColour,
+  color: PrivacyChoicesConfiguration.style.toggleTextColour
+}
+
 /**
  * Component for the banner.
  *
@@ -19,7 +25,7 @@ class PrivacyChoicesBanner extends Component {
   render () {
     return (
       <div id={id}>
-        <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.openButton} onClick={this.props.onSettings} />
+        <PrivacyChoicesButton style={toggleStyle} text={PrivacyChoicesConfiguration.language.settings.openButton} onClick={this.props.onSettings} />
         <PrivacyChoicesPrompt isVisible={this.props.isPromptVisible} onClickAccept={this.props.onAccept} onClickSettings={this.props.onSettings} />
       </div>
     )

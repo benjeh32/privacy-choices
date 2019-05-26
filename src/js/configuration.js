@@ -34,6 +34,8 @@ const defaultConfiguration = {
     expiryDays: 90
   },
   style: {
+    toggleBackgroundColour: '#222222',
+    toggleTextColour: '#ffffff',
     buttonBackgroundColour: '#690060',
     buttonTextColour: '#ffffff',
     promptBackgroundColour: '#222222',
