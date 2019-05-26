@@ -188,11 +188,11 @@ class PrivacyChoices extends Component {
     })
 
     if (category && isConsented) {
-      typeof category.handleEnabled === 'function' && category.handleEnabled()
+      typeof category.handleEnabled === 'function' ? category.handleEnabled() : PrivacyChoicesConfiguration.defaultCallback()
     }
 
     if (category && !isConsented) {
-      typeof category.handleDisabled === 'function' && category.handleDisabled()
+      typeof category.handleDisabled === 'function' ? category.handleDisabled() : PrivacyChoicesConfiguration.defaultCallback()
     }
   }
 

@@ -2,11 +2,15 @@
 import deepmerge from 'deepmerge'
 
 // Constants
+const defaultCallback = function () {
+  console.warn('Privacy Choices: An undefined callback was fired for a category. Proper usage of this library requires configuration to be set up to manage your storage use. Refer to the readme at https://github.com/benjeh32/privacy-choices for more.')
+}
+
 const defaultConfiguration = {
   necessary: {
     title: 'Necessary Storage',
     description: 'Necessary storage enables core site functionality. This site cannot function properly without it, and it can only be disabled by changing your browser preferences.',
-    handleEnabled: function () {}
+    handleEnabled: defaultCallback
   },
   categories: [ ],
   language: {
@@ -50,6 +54,9 @@ class PrivacyChoicesConfiguration {
 
     // Merge custom into default, preferring custom values
     this.configuration = deepmerge(defaultConfiguration, customConfiguration)
+
+    // Non-configurable items
+    this.configuration.defaultCallback = defaultCallback
 
     return this.configuration
   }
