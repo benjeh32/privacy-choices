@@ -53,7 +53,7 @@ class PrivacyChoicesCategory extends Component {
         <div className={headerClassName}>
           <h4>{this.props.title}</h4>
           <Switch onChange={this.handleChange} checked={isChecked} disabled={this.props.isRequired}
-            handleDiameter={25} height={40} width={80} activeBoxShadow={false}
+            handleDiameter={25} height={40} width={80} activeBoxShadow='none'
             uncheckedIcon={<div style={switchStyles.uncheckedIcon}>OFF</div>}
             checkedIcon={<div style={switchStyles.checkedIcon}>ON</div>} />
         </div>
