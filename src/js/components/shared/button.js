@@ -1,6 +1,15 @@
 // Imports
 import React, { Component } from 'react'
 
+// Local imports
+import PrivacyChoicesConfiguration from '../../configuration'
+
+// Custom styling
+const style = {
+  background: PrivacyChoicesConfiguration.style.buttonBackgroundColour,
+  color: PrivacyChoicesConfiguration.style.buttonTextColour
+}
+
 /**
  * Component for a button.
  */
@@ -8,7 +17,7 @@ class PrivacyChoicesButton extends Component {
   // Render
   render () {
     return (
-      <button onClick={this.props.onClick}>
+      <button style={style} onClick={this.props.onClick}>
         {this.props.text}
       </button>
     )

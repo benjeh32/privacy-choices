@@ -28,6 +28,14 @@ const defaultConfiguration = {
   storage: {
     key: 'privacy-choices',
     expiryDays: 90
+  },
+  style: {
+    buttonBackgroundColour: '#690060',
+    buttonTextColour: '#ffffff',
+    promptBackgroundColour: '#222222',
+    promptTextColour: '#ffffff',
+    settingsBackgroundColour: '#222222',
+    settingsTextColour: '#ffffff'
   }
 }
 

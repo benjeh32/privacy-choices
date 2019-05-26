@@ -12,6 +12,11 @@ const headerId = 'privacy-choices-settings-header'
 const bulkChangeId = 'privacy-choices-settings-bulk'
 const dividerClassName = 'privacy-choices-settings-divider'
 
+// Custom styling
+const dividerStyle = {
+  background: PrivacyChoicesConfiguration.style.settingsDividerColour
+}
+
 /**
  * Component for the settings panel that sits inside the sidebar.
  */
@@ -23,7 +28,7 @@ class PrivacyChoicesSettings extends Component {
 
     // Necessary category
     categoriesElements.push(
-      <div className={dividerClassName} key='necessary-divider' />
+      <div className={dividerClassName} key='necessary-divider' style={dividerStyle} />
     )
     categoriesElements.push(
       <PrivacyChoicesCategory key='necessary' isRequired title={PrivacyChoicesConfiguration.necessary.title} description={PrivacyChoicesConfiguration.necessary.description} handleEnabled={PrivacyChoicesConfiguration.necessary.handleEnabled} />
@@ -32,7 +37,7 @@ class PrivacyChoicesSettings extends Component {
     // Other categories
     PrivacyChoicesConfiguration.categories.forEach((category) => {
       categoriesElements.push(
-        <div key={category.storageKey + '-divider'} className={dividerClassName} />
+        <div key={category.storageKey + '-divider'} className={dividerClassName} style={dividerStyle} />
       )
       categoriesElements.push(
         <PrivacyChoicesCategory key={category.storageKey} {...category} isConsented={this.props.categoryChoices[category.storageKey] || false} saveChange={this.props.saveCategoryChange} />

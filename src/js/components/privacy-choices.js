@@ -287,7 +287,10 @@ class PrivacyChoices extends Component {
       },
       sidebar: {
         // Make sidebar fixed, like dragHandle is by default
-        position: 'fixed'
+        position: 'fixed',
+        // Custom styling
+        background: PrivacyChoicesConfiguration.style.settingsBackgroundColour,
+        color: PrivacyChoicesConfiguration.style.settingsTextColour
       },
       overlay: {
         // Enable/disable overlay interactivity based on open/closed state
