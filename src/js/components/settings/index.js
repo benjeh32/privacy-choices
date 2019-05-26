@@ -31,7 +31,7 @@ class PrivacyChoicesSettings extends Component {
       <div className={dividerClassName} key='necessary-divider' style={dividerStyle} />
     )
     categoriesElements.push(
-      <PrivacyChoicesCategory key='necessary' isRequired title={PrivacyChoicesConfiguration.necessary.title} description={PrivacyChoicesConfiguration.necessary.description} handleEnabled={PrivacyChoicesConfiguration.necessary.handleEnabled} />
+      <PrivacyChoicesCategory key='necessary' isRequired title={PrivacyChoicesConfiguration.necessary.title} description={PrivacyChoicesConfiguration.necessary.description} />
     )
 
     // Other categories

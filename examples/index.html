@@ -2,111 +2,52 @@
 <html>
 
 <head>
-    <title>Cookie test</title>
+    <title>Privacy Choices - example</title>
 </head>
 
 <body>
     <div style="margin: 0 auto; width: 50%;">
-        <h1>Cookie test</h1>
-
-        <p>Cookies!</p>
-
-        <a href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); })();' class="button">Clear cookies</a>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
-        <p>Cookies!</p>
+        <h1>Privacy Choices - example</h1>
+        <p><a href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); window.location.reload(true)})();' class="button">Clear cookies</a></p>
     </div>
 
-    <!-- GDPR Consent -->
+    <!-- Privacy Choices -->
     <script>
         window.privacyChoicesConfiguration = {
             necessary: {
-                title: 'Strictly Necessary Cookies',
-                description: 'Necessary cookies enable core functionality. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences.',
-                handleEnabled: function () {
-                    // Callback fired to handle necessary on page load
-                    console.log('RUNNING NECESSARY')
+                handle: function () {
+                    console.log('[Privacy Choices - example] Handle necessary')
                 }
             },
             categories: [
                 {
-                    key: 'functional',
-                    title: 'Functional Cookies',
-                    description: 'Functional cookies help us to improve our website by collecting and reporting information on its usage.',
+                    storageKey: 'storage1',
+                    title: 'Storage One - default',
+                    description: 'This category is a default one so will enable from the \'accept\' button on the prompt.',
                     default: true,
-                    handleEnabled: function () {
-                        // Callback fired when this category is accepted
-                        console.log('Accept: functional')
+                    handleAccept: function () {
+                        console.log('[Privacy Choices - example] Accept storage1')
                     },
-                    handleDisabled: function () {
-                        // Callback fired when this category is rejected
-                        console.log('Reject: functional')
+                    handleReject: function () {
+                        console.log('[Privacy Choices - example] Reject storage1')
                     }
                 },
                 {
-                    key: 'marketing',
-                    title: 'Marketing Cookies',
-                    description: 'We use marketing cookies to help us improve the relevancy of advertising campaigns you receive.',
+                    storageKey: 'storage2',
+                    title: 'Storage Two - non-default',
+                    description: 'This category is not a default one so will not be enabled from the \'accept\' button on the prompt.',
                     default: false,
-                    handleEnabled: function () {
-                        // Callback fired when this category is accepted
-                        console.log('Accept: marketing')
+                    handleAccept: function () {
+                        console.log('[Privacy Choices - example] Accept storage2')
                     },
-                    handleDisabled: function () {
-                        // Callback fired when this category is rejected
-                        console.log('Reject: marketing')
+                    handleReject: function () {
+                        console.log('[Privacy Choices - example] Reject storage2')
                     }
-                }
+                },
             ]
-        };
+        }
     </script>
-    <script src="C:\projects\privacy-choices\build\privacy-choices.bundle.js"></script>
+    <script src="file:///C:/projects/privacy-choices/build/privacy-choices.bundle.js"></script>
     <!-- Other scripts below this point -->
 
 </body>

@@ -10,7 +10,7 @@ const defaultConfiguration = {
   necessary: {
     title: 'Necessary Storage',
     description: 'Necessary storage enables core site functionality. This site cannot function properly without it, and it can only be disabled by changing your browser preferences.',
-    handleEnabled: defaultCallback
+    handle: defaultCallback
   },
   categories: [ ],
   language: {

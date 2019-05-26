@@ -188,11 +188,11 @@ class PrivacyChoices extends Component {
     })
 
     if (category && isConsented) {
-      typeof category.handleEnabled === 'function' ? category.handleEnabled() : PrivacyChoicesConfiguration.defaultCallback()
+      typeof category.handleAccept === 'function' ? category.handleAccept() : PrivacyChoicesConfiguration.defaultCallback()
     }
 
     if (category && !isConsented) {
-      typeof category.handleDisabled === 'function' ? category.handleDisabled() : PrivacyChoicesConfiguration.defaultCallback()
+      typeof category.handleReject === 'function' ? category.handleReject() : PrivacyChoicesConfiguration.defaultCallback()
     }
   }
 
@@ -200,7 +200,7 @@ class PrivacyChoices extends Component {
    * Execute the callback for the necessary category.
    */
   runNecessaryCallback () {
-    typeof PrivacyChoicesConfiguration.necessary.handleEnabled === 'function' && PrivacyChoicesConfiguration.necessary.handleEnabled()
+    typeof PrivacyChoicesConfiguration.necessary.handle === 'function' && PrivacyChoicesConfiguration.necessary.handle()
   }
 
   /**
