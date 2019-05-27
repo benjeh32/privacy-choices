@@ -71,6 +71,13 @@ class PrivacyChoicesSettings extends Component {
       </div>
     )
   }
+
+  /**
+   * Get ID.
+   */
+  static getId () {
+    return id
+  }
 }
 
 // Export component

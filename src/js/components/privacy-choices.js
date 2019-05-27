@@ -8,6 +8,9 @@ import PrivacyChoicesConfiguration from '../configuration'
 import PrivacyChoicesPreferences from '../preferences'
 import PrivacyChoicesSettings from './settings'
 
+// Styling constants
+const noScrollClassName = 'privacy-choices-no-scroll'
+
 /**
  * Main Privacy Choices component.
  */
@@ -90,6 +93,17 @@ class PrivacyChoices extends Component {
   openSettings (doOpenSettings) {
     // Update state
     this.setSettingsOpen(doOpenSettings)
+
+    // If opening settings, prevent body from scrolling and ensure settings is scrolled to the top
+    var body = document.body
+    if (doOpenSettings) {
+      body.classList.add(noScrollClassName)
+      // Now settings is open, ensure scrolled to the top
+      var sidebar = document.getElementById(PrivacyChoicesSettings.getId()).parentElement
+      sidebar.scrollTop = 0
+    } else {
+      body.classList.remove(noScrollClassName)
+    }
 
     // If closing settings without interaction bring up the prompt, otherwise ensure closed
     this.setPromptShown(!doOpenSettings && !PrivacyChoicesPreferences.getHasUserInteracted())

@@ -43,67 +43,6 @@
     outline: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.privacy-choices-service .switch {
-    vertical-align: middle;
-    margin: 0 20px;
-}
-
-.privacy-choices-service .description {
-    display: block;
-    color: #fff;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.privacy-choices-accept {
-    background: rgb(0, 136, 0);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15pt;
-}
-
-.privacy-choices-close-sidebar {
-    background: none;
-    color: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    font-weight: inherit;
-    border: none;
-    cursor: pointer;
-    float: right;
+.privacy-choices-no-scroll {
+    overflow: hidden;
 }
