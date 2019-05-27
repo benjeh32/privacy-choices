@@ -10,21 +10,54 @@
     background: #222222;
     padding: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
-    align-items: center;
     flex-wrap: wrap;
     transition: transform 0.3s ease-out;
 }
 
 #privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-message {
-    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+#privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-buttons {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: -5px;
+    flex-direction: column;
 }
 
 #privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-buttons button {
-    margin-right: 10px;
+    margin: 5px;
 }
 
-#privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-buttons button:last-child {
-    margin-right: 0;
+@media (min-width:576px) {
+    #privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-buttons {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px) {
+    #privacy-choices #privacy-choices-banner #privacy-choices-prompt {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: center;
+    }
+    #privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-message {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+    #privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-buttons {
+        justify-content: space-around;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 992px) {
+    #privacy-choices #privacy-choices-banner #privacy-choices-prompt #privacy-choices-prompt-buttons {
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        flex-direction: row;
+    }
 }
