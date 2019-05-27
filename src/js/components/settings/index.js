@@ -16,6 +16,9 @@ const dividerClassName = 'privacy-choices-settings-divider'
 const dividerStyle = {
   background: PrivacyChoicesConfiguration.style.settingsDividerColour
 }
+const linkStyle = {
+  color: PrivacyChoicesConfiguration.style.settingsTextColour
+}
 
 /**
  * Component for the settings panel that sits inside the sidebar.
@@ -44,6 +47,14 @@ class PrivacyChoicesSettings extends Component {
       )
     })
 
+    // Policy section
+    let policyElement
+    if (PrivacyChoicesConfiguration.policy.display) {
+      policyElement = <p>
+        {PrivacyChoicesConfiguration.language.policy.text}<a href={PrivacyChoicesConfiguration.policy.uri} style={linkStyle}>{PrivacyChoicesConfiguration.language.policy.linkText}</a>
+      </p>
+    }
+
     return (
       <div id={id}>
         <div id={headerId}>
@@ -51,6 +62,7 @@ class PrivacyChoicesSettings extends Component {
           <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.closeButton} onClick={this.props.onClose} />
         </div>
         <p>{PrivacyChoicesConfiguration.language.settings.description}</p>
+        {policyElement}
         <div id={bulkChangeId}>
           <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.acceptAllButton} onClick={this.props.onAcceptAll} />
           <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.declineAllButton} onClick={this.props.onDeclineAll} />

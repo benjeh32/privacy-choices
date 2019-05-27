@@ -6,6 +6,7 @@
 #privacy-choices h3,
 #privacy-choices h4,
 #privacy-choices p,
+#privacy-choices a,
 #privacy-choices button {
     margin: 0;
     font-size: 1.3em;
@@ -16,7 +17,17 @@
     font-size: 1.1em;
 }
 
-#privacy-choices p, #privacy-choices button {
+#privacy-choices a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#privacy-choices a:hover, #privacy-choices a:focus {
+    text-decoration: underline;
+}
+
+#privacy-choices p, #privacy-choices button, #privacy-choices a {
     font-size: 1em;
 }
 

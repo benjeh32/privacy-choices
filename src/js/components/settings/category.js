@@ -14,7 +14,8 @@ const switchStyles = {
     alignItems: 'center',
     height: '100%',
     fontWeight: 'bold',
-    paddingRight: '5px'
+    paddingRight: '5px',
+    color: '#ffffff'
   },
   checkedIcon: {
     display: 'flex',
@@ -22,7 +23,8 @@ const switchStyles = {
     alignItems: 'center',
     height: '100%',
     fontWeight: 'bold',
-    paddingLeft: '5px'
+    paddingLeft: '5px',
+    color: '#ffffff'
   }
 }
 

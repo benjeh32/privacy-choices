@@ -12,6 +12,10 @@ const defaultConfiguration = {
     description: 'Necessary storage enables core site functionality. This site cannot function properly without it, and it can only be disabled by changing your browser preferences.',
     handle: defaultCallback
   },
+  policy: {
+    display: true,
+    uri: 'https://example.com/policy'
+  },
   categories: [ ],
   language: {
     settings: {
@@ -27,6 +31,10 @@ const defaultConfiguration = {
       description: 'This site uses cookies and other web storage technologies.',
       acceptButton: 'Accept and continue',
       settingsButton: 'Manage choices'
+    },
+    policy: {
+      text: 'For more information on our use of web storage, please refer to our ',
+      linkText: 'Privacy Policy'
     }
   },
   storage: {
