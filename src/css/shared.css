@@ -39,8 +39,9 @@
     padding: 10px 20px;
 }
 
-#privacy-choices button:focus {
+#privacy-choices button:hover, #privacy-choices button:focus {
     outline: 0;
+    text-decoration: underline;
 }
 
 .privacy-choices-no-scroll {
