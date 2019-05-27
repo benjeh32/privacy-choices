@@ -4,7 +4,13 @@
 }
 
 #privacy-choices #privacy-choices-settings {
-    width: 400px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #privacy-choices #privacy-choices-settings {
+        width: 400px;
+    }
 }
 
 #privacy-choices #privacy-choices-settings > p {

@@ -304,7 +304,7 @@ class PrivacyChoices extends Component {
 
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child
-      <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen} styles={sidebarStyles}>
+      <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen} styles={sidebarStyles} touch={false}>
         <PrivacyChoicesBanner isPromptVisible={this.state.isPromptShown} onAccept={this.handleAcceptDefault} onSettings={this.handleOpenSettings} />
       </Sidebar>
     )

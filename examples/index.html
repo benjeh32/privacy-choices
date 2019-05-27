@@ -3,11 +3,27 @@
 
 <head>
     <title>Privacy Choices - example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .container {
+            padding: 20px
+        }
+        @media (min-width: 768px) {
+            .container {
+                margin: 0 auto;
+                width: 75%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div style="margin: 0 auto; width: 50%;">
-        <h1>Privacy Choices - example</h1>
+    <div class="container">
+        <h1>Privacy Choices</h1>
+        <h2>Example</h2>
         <p><a href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); window.location.reload(true)})();' class="button">Clear cookies</a></p>
     </div>
 
