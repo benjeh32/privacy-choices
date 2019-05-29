@@ -60,3 +60,7 @@ Either way, the library bundle that is built will be at `build/privacy-choices.b
 After it is built, reference `build/privacy-choices.bundle.js` and use the library like normal. The example page at `examples/index.html` does this.
 
 ***Note:** This library stores the user's preferences in a cookie. Many popular browsers no longer support the use of cookies for `file://...` or `http://localhost/...` browsing so this may make development trickier. Most of the original development on this library was done using Microsoft Edge, which doesn't seem to mind local cookies.*
+
+## License
+
+Licensed under the [MIT License](https://github.com/benjeh32/privacy-choices/blob/master/LICENSE).
