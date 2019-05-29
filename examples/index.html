@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Privacy Choices - example</title>
+    <title>Privacy Choices</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -24,7 +24,7 @@
     <div class="container">
         <h1>Privacy Choices</h1>
         <h2>Example</h2>
-        <p><a href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); window.location.reload(true)})();' class="button">Clear cookies</a></p>
+        <p><a href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); window.location.reload(true)})();' class="button">Clear cookies for this domain.</a></p>
     </div>
 
     <!-- Privacy Choices -->
@@ -32,7 +32,7 @@
         window.privacyChoicesConfiguration = {
             necessary: {
                 handle: function () {
-                    console.log('[Privacy Choices - example] Handle necessary')
+                    console.log('[Privacy Choices] Handle necessary')
                 }
             },
             categories: [
@@ -42,10 +42,10 @@
                     description: 'This category is a default one so will enable from the \'accept\' button on the prompt.',
                     default: true,
                     handleAccept: function () {
-                        console.log('[Privacy Choices - example] Accept storage1')
+                        console.log('[Privacy Choices] Accept storage1')
                     },
                     handleReject: function () {
-                        console.log('[Privacy Choices - example] Reject storage1')
+                        console.log('[Privacy Choices] Reject storage1')
                     }
                 },
                 {
@@ -54,16 +54,28 @@
                     description: 'This category is not a default one so will not be enabled from the \'accept\' button on the prompt.',
                     default: false,
                     handleAccept: function () {
-                        console.log('[Privacy Choices - example] Accept storage2')
+                        console.log('[Privacy Choices] Accept storage2')
                     },
                     handleReject: function () {
-                        console.log('[Privacy Choices - example] Reject storage2')
+                        console.log('[Privacy Choices] Reject storage2')
                     }
                 },
+                {
+                    storageKey: 'another-one',
+                    title: 'Another One',
+                    description: 'Yet another category added..',
+                    default: false,
+                    handleAccept: function () {
+                        console.log('[Privacy Choices] Accept another-one')
+                    },
+                    handleReject: function () {
+                        console.log('[Privacy Choices] Reject another-one')
+                    }
+                }
             ]
         }
     </script>
-    <script src="file:///C:/projects/privacy-choices/build/privacy-choices.bundle.js"></script>
+    <script src="../build/privacy-choices.bundle.js"></script>
     <!-- Other scripts below this point -->
 
 </body>
