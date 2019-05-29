@@ -4,9 +4,27 @@ Privacy Choices is a JavaScript library that allows you to give the users of you
 
 ## Live demo
 
-<http://code.benthomas.me/privacy-choices>
+That can be found [here](http://code.benthomas.me/privacy-choices).
+
+## Usage
+
+### Responsiveness
+
+Privacy Choices should scale appropriately so that it has good usability on smaller devices (e.g. mobile). However, to take advantage of this, you should configure the viewport on your site to support these devices:
+
+```html
+<head>
+    ...
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    ...
+</head>
+```
+
+More information on the browser's viewport can be found in the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag).
 
 ## Development
+
+### Status
 
 [![CircleCI](https://circleci.com/gh/benjeh32/privacy-choices.svg?style=svg)](https://circleci.com/gh/benjeh32/privacy-choices)
 
@@ -14,21 +32,19 @@ Privacy Choices is a JavaScript library that allows you to give the users of you
 
 - [Node.js](https://nodejs.org/)
 
-### Dependencies
+### Installing dependencies
 
-Install development dependencies:
 
 ```console
 npm install
 ```
 
-### Building
+### Building the bundle
 
 To build once in production mode:
 
 ```console
 npm run build
-
 ```
 
 To start the live-updating development build that will rebuild whenever a change is made to the JavaScript or CSS:
@@ -39,7 +55,7 @@ npm run start
 
 Either way, the library bundle that is built will be at `build/privacy-choices.bundle.js`.
 
-### Using
+### Using the bundle you built
 
 After it is built, reference `build/privacy-choices.bundle.js` and use the library like normal. The example page at `examples/index.html` does this.
 
