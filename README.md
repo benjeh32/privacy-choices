@@ -2,6 +2,12 @@
 
 Privacy Choices is a JavaScript library that allows you to give the users of your website choices regarding the use of cookies and other web storage technologies on their device. Configured correctly, this library should make your site compliant with EU legislation.
 
+<img src="https://github.com/benjeh32/privacy-choices/raw/master/examples/images/readme-prompt.png" alt="Privacy Choices banner prompt" />
+
+<img src="https://github.com/benjeh32/privacy-choices/raw/master/examples/images/readme-toggle.png" alt="Privacy Choices choices toggle" />
+
+<img src="https://github.com/benjeh32/privacy-choices/raw/master/examples/images/readme-settings.png" alt="Privacy Choices choices menu" width="400"/>
+
 ## Overview
 
 ### History
