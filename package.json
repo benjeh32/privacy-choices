@@ -8,8 +8,8 @@
     "scripts": {
         "test": "standard",
         "build": "npm test && webpack --config webpack.production.js",
-        "start": "webpack --watch --config webpack.development.js",
-        "clean": "rimraf build node_modules",
+        "start": "webpack-dev-server --open --config webpack.development.js",
+        "clean": "rimraf build",
         "reinstall": "npm run clean && npm install",
         "rebuild": "npm run reinstall && npm run build"
     },
@@ -24,6 +24,7 @@
         "clean-webpack-plugin": "^0.1.19",
         "css-loader": "^2.1.1",
         "deepmerge": "^3.2.0",
+        "html-webpack-plugin": "^3.2.0",
         "mini-css-extract-plugin": "^0.6.0",
         "optimize-css-assets-webpack-plugin": "^5.0.1",
         "react": "^16.4.1",
@@ -33,9 +34,10 @@
         "rimraf": "^2.6.2",
         "standard": "^12.0.1",
         "style-loader": "^0.21.0",
-        "terser-webpack-plugin": "^1.2.3",
-        "webpack": "^4.14.0",
+        "terser-webpack-plugin": "^1.3.0",
+        "webpack": "^4.32.2",
         "webpack-cli": "^3.0.8",
+        "webpack-dev-server": "^3.5.1",
         "webpack-merge": "^4.2.1"
     }
 }
