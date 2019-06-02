@@ -21,9 +21,7 @@ similar technologies was added, meaning it was no longer enough to simply let a 
 
 In summary, as of May 2019 [(2)][2]:
 
-```
-The ePrivacy directive – more specifically Article 5(3) – requires prior informed consent for storage or for access to information stored on a user's terminal equipment. In other words, you must ask users if they agree to most cookies and similar technologies (e.g. web beacons, Flash cookies, etc.) before the site starts to use them.
-```
+_The ePrivacy directive – more specifically Article 5(3) – requires prior informed consent for storage or for access to information stored on a user's terminal equipment. In other words, you must ask users if they agree to most cookies and similar technologies (e.g. web beacons, Flash cookies, etc.) before the site starts to use them._
 
 #### GDPR
 
@@ -78,14 +76,16 @@ Privacy Choices should scale appropriately so that it has good usability on smal
 
 More information on the browser's viewport can be found in the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag).
 
-## Development
+## Developer information
 
 ### Status
 
 #### master
+
 ![CodeBuild build badge for master branch](https://codebuild.eu-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiQjJNYmduWTh0NHFlU3NPalF1VzNWeHppVjRtZk5DVG5oZlR4VlJ5SmZzanhLaEQ2WHE3QnA4Tm9tS3BJMjl6dzNTUjB1czdJb3oweU9XMVdFSTJkeS9vPSIsIml2UGFyYW1ldGVyU3BlYyI6IkcrZmdTdjFFOWdEbUpZQWoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 #### develop
+
 ![CodeBuild build badge for develop branch](https://codebuild.eu-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiQjJNYmduWTh0NHFlU3NPalF1VzNWeHppVjRtZk5DVG5oZlR4VlJ5SmZzanhLaEQ2WHE3QnA4Tm9tS3BJMjl6dzNTUjB1czdJb3oweU9XMVdFSTJkeS9vPSIsIml2UGFyYW1ldGVyU3BlYyI6IkcrZmdTdjFFOWdEbUpZQWoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=develop)
 
 ### Prerequisites
@@ -100,34 +100,41 @@ npm install
 
 ### Building the bundle
 
-#### Production mode
+The live site is designed to be hosted on a web server, not viewed from a local file system.
 
-To build the bundle one time:
+Furthermore, this library stores the user's preferences in a cookie. Many popular browsers don't support the use of cookies for `file://...` or `http://localhost/...` browsing. The easiest way to develop this library is using the live-updating web server and Microsoft Edge (which doesn't seem to mind local cookies).
 
-```console
-npm run build
-```
+#### Code layout
+
+- The library source CSS is in `./src/css`. The JavaScript is in `./src/js`.
+
+- The live site HTML is in `./examples`.
+
+- The built production mode artefacts (library bundle and demo site files) will be in `./build`.
 
 #### Development mode
 
-To start the live-updating development build that will rebuild whenever a change is made to the JavaScript or CSS:
+To start the live-updating web server:
 
 ```console
 npm run start
 ```
 
-Either way, the library bundle that is built will be at `build/privacy-choices.bundle.js`.
+This builds the bundle in memory and hosts a local copy of the demo site at `http://localhost:9000`. This location will automatically be launched in your default browser.
 
-### Using the bundle
+Changes to the bundle JavaScript or CSS will be reflected instantly by the web server without needing a manual page reload, as will changes to the demo site's HTML itself.
 
-After it is built, reference `build/privacy-choices.bundle.js` and use the library like normal. The example page at `examples/index.html` does this.
+#### Production mode
 
-***Note:** This library stores the user's preferences in a cookie. Many popular browsers no longer support the use of cookies for `file://...` or `http://localhost/...` browsing so this may make development trickier. Most of the original development on this library was done using Microsoft Edge, which doesn't seem to mind local cookies.*
+To build the bundle and live demo site files for release:
+
+```console
+npm run build
+```
 
 ## License
 
 Licensed under the [MIT License](https://github.com/benjeh32/privacy-choices/blob/master/LICENSE).
-
 
 [1]: https://ico.org.uk/media/for-organisations/documents/1545/cookies_guidance.pdf
 [2]: http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm
