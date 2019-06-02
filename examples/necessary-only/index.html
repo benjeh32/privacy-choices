@@ -64,22 +64,29 @@
                 alt="Privacy Choices banner prompt" />
 
             <h3 class="mt-5">Examples // Necessary storage only</h3>
-            <p>This example uses the default configuration with no categories defined. This is the minimal use case,
-                where a site uses only 'necessary' cookies that it must inform the user about. There is no requirement
-                to get the user's consent because there are no non-necessary categories in use. The library therefore
-                just lets the user dismiss the notification. The settings menu remains so that the user can get more
-                information, including viewing your privacy policy.</p>
-            <p>The only use case more minimal than this one would be when no cookies are used on a site whatsoever. In
-                such a case there would be no need to use this library!</p>
+
+            <p>This example shows how the library handles the most basic use case - when a site uses only 'strictly-necessary' storage. A user must be informed that the site uses this storage, but there is no need to provide a choice because the storage is only used to enable core site functionality. The only use case more minimal than this one would be when no storage is used on a site whatsoever but in such a case there would be no need to use this library!</p>
+
+            <h5 class="mt-5">Overview</h5>
+
+            <p>When no categories are defined in the configuration, the banner lets a user simply dismiss the notification. They are also able to open the settings panel, however in this configuration the language has been set up to use wording such as 'information' and 'details' rather than 'choices'.</p>
+
+            <p>The menu remains accessible via the normal toggle to act as a privacy information area. A user could still access your privacy policy from here.</p>
+
+            <p>A configuration such as this one would satisfy the need to inform users that you use only the most necessary of storage to make your site function properly. If there is any analytical, marketing, etc. storage on your site you will need to set up consent categories to manage user choices.<p>
+
+            <h5 class="mt-5">Callback log</h5>
+
+            <p>All categories should have defined in configuration two callbacks - one for when a user toggles the category on and one for when the user toggles the category off. The necessary category also has a callback that will run once when the user loads the page.<p>
+
+            <p>Below is a log of these callbacks being executed as you use this example:</p>
 
             <h5 class="mt-5">Clear preferences</h5>
+
             <p>You may find it useful to <a
                     href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); window.location.reload(true)})();'
                     class="button">clear preferences and reload the page</a> as you explore these examples. Doing so
                 will make it as if you have just come to the page for the very first time.</p>
-
-            <h5 class="mt-5">Console log</h5>
-            test
 
             <h5 class="mt-5">Notice</h5>
             <p>Having different configurations of consent choice categories on the same domain isn't really how this
