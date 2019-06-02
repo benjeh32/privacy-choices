@@ -1,14 +1,24 @@
-const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: path.join(__dirname, 'src', 'js', 'index.js'),
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, 'examples', 'index.html'),
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'necessary-only/index.html',
+      template: path.join(__dirname, 'examples', 'necessary-only', 'index.html')
+    })
   ],
   output: {
     filename: 'privacy-choices.bundle.js',
-    path: path.resolve(__dirname, 'build')
+    path: path.join(__dirname, 'build')
   },
   module: {
     rules: [
