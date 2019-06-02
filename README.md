@@ -82,7 +82,11 @@ More information on the browser's viewport can be found in the [MDN Web Docs](ht
 
 ### Status
 
-[![CircleCI](https://circleci.com/gh/benjeh32/privacy-choices.svg?style=svg)](https://circleci.com/gh/benjeh32/privacy-choices)
+#### master
+![CodeBuild build badge for master branch](https://codebuild.eu-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiQjJNYmduWTh0NHFlU3NPalF1VzNWeHppVjRtZk5DVG5oZlR4VlJ5SmZzanhLaEQ2WHE3QnA4Tm9tS3BJMjl6dzNTUjB1czdJb3oweU9XMVdFSTJkeS9vPSIsIml2UGFyYW1ldGVyU3BlYyI6IkcrZmdTdjFFOWdEbUpZQWoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
+#### develop
+![CodeBuild build badge for develop branch](https://codebuild.eu-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiQjJNYmduWTh0NHFlU3NPalF1VzNWeHppVjRtZk5DVG5oZlR4VlJ5SmZzanhLaEQ2WHE3QnA4Tm9tS3BJMjl6dzNTUjB1czdJb3oweU9XMVdFSTJkeS9vPSIsIml2UGFyYW1ldGVyU3BlYyI6IkcrZmdTdjFFOWdEbUpZQWoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=develop)
 
 ### Prerequisites
 
