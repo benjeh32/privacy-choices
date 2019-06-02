@@ -14,6 +14,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'necessary-only/index.html',
       template: path.join(__dirname, 'examples', 'necessary-only', 'index.html')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'standard-usage/index.html',
+      template: path.join(__dirname, 'examples', 'standard-usage', 'index.html')
     })
   ],
   output: {

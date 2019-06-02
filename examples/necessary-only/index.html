@@ -28,7 +28,7 @@
 <body class="d-flex flex-column h-100">
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="/">Privacy Choices</a>
+            <a class="navbar-brand" href="/privacy-choices">Privacy Choices</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,14 +36,16 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">About</a>
+                        <a class="nav-link" href="/privacy-choices">About</a>
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="example-dropdown" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Examples <span
                                 class="sr-only">(current)</span></span></a>
                         <div class="dropdown-menu" aria-labelledby="example-dropdown">
-                            <a class="dropdown-item" href="/necessary-only">Necessary only</a>
+                            <a class="dropdown-item" href="/privacy-choices/standard-usage">Standard usage</a>
+                            <a class="dropdown-item active" href="/privacy-choices/necessary-only">Necessary only <span
+                                    class="sr-only">(current)</span></a>
                         </div>
                     </li>
                 </ul>
@@ -57,8 +59,11 @@
             <p class="lead">Privacy Choices is a JavaScript library that allows you to give the users of your website
                 choices regarding the use of cookies and other web storage technologies on their device. Configured
                 correctly, this library should make your site compliant with EU legislation.</p>
+            <img class="shadow rounded" width="100%"
+                src="https://github.com/benjeh32/privacy-choices/raw/master/examples/images/readme-prompt.png"
+                alt="Privacy Choices banner prompt" />
 
-            <h3 class="mt-5">Examples // No categories</h3>
+            <h3 class="mt-5">Examples // Necessary storage only</h3>
             <p>This example uses the default configuration with no categories defined. This is the minimal use case,
                 where a site uses only 'necessary' cookies that it must inform the user about. There is no requirement
                 to get the user's consent because there are no non-necessary categories in use. The library therefore
@@ -66,14 +71,33 @@
                 information, including viewing your privacy policy.</p>
             <p>The only use case more minimal than this one would be when no cookies are used on a site whatsoever. In
                 such a case there would be no need to use this library!</p>
-            <p>Having different configurations of consent choice categories on the same domain isn't a supported usage
-                of this library.
-                Therefore, if you encounter any issues with the library on this demo site please use the link provided
-                on every demo to <a
+
+            <h5 class="mt-5">Clear preferences</h5>
+            <p>You may find it useful to <a
                     href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); window.location.reload(true)})();'
-                    class="button">clear cookies for this domain</a> prior to raising an issue on GitHub. This will
-                reset the library as if you are visiting for the first time. Production usage of this library should use
-                the same categories configuration across a domain so this would not be a problem for your users.</p>
+                    class="button">clear preferences and reload the page</a> as you explore these examples. Doing so
+                will make it as if you have just come to the page for the very first time.</p>
+
+            <h5 class="mt-5">Console log</h5>
+            test
+
+            <h5 class="mt-5">Notice</h5>
+            <p>Having different configurations of consent choice categories on the same domain isn't really how this
+                library should be used. Privacy Choices will ask the user for consent again if it detects a different
+                set of consent categories in configuration compared to what is stored in the preferences cookie for a
+                domain.</p>
+            <p>Therefore, as you browser these examples that are all hosted on the same domain you are likely to see the
+                notification banner reappear very often as the library detects a mismatch between configuration and
+                preferences. This is by design and will not be an issue in a production use case if implemented
+                correctly.</p>
+
+            <h3 class="mt-5">Usage and source code</h3>
+            <p>You can find full details of the project <a href="https://github.com/benjeh32/privacy-choices">on
+                    GitHub</a>.</p>
+
+            <h3 class="mt-5">License</h3>
+            <p>Licensed under the <a href="https://github.com/benjeh32/privacy-choices/blob/master/LICENSE">MIT
+                    License</a>.</p>
         </div>
     </main>
 
@@ -100,9 +124,24 @@
             necessary: {
                 handle: function () {
                     console.log('[Privacy Choices] Handle necessary')
+                },
+                title: 'Strictly-necessary cookies',
+                description: 'These cookies enable core site functionality. This site cannot function properly without them, and they can only be disabled by changing your browser preferences.',
+            },
+            language: {
+                settings: {
+                    openButton: 'Privacy Information',
+                    closeButton: 'Close',
+                    heading: 'Privacy Information',
+                    description: 'This site uses cookies to enable core site functionality. No other storage is kept on your device.'
+                },
+                prompt: {
+                    heading: 'Privacy information for this site',
+                    description: 'This site uses cookies to enable core site functionality. No other storage is kept on your device.',
+                    settingsButton: 'More information',
+                    dismissButton: 'Dismiss'
                 }
             },
-            categories: []
         }
     </script>
     <!-- privacy-choices.bundle.js will be included here. -->

@@ -34,7 +34,7 @@ class PrivacyChoices extends Component {
     // Bind handlers
     this.handleOpenSettings = this.handleOpenSettings.bind(this)
     this.handleCloseSettings = this.handleCloseSettings.bind(this)
-    this.handleAcceptDefault = this.handleAcceptDefault.bind(this)
+    this.handleDismissBanner = this.handleDismissBanner.bind(this)
     this.handleAcceptAll = this.handleAcceptAll.bind(this)
     this.handleDeclineAll = this.handleDeclineAll.bind(this)
     this.handleChangeCategory = this.handleChangeCategory.bind(this)
@@ -110,16 +110,9 @@ class PrivacyChoices extends Component {
   }
 
   /**
-   * Accept the default consent categories.
+   * Dismiss banner.
    */
-  acceptDefault () {
-    // Set accept for default categories not already accepted
-    PrivacyChoicesConfiguration.categories.forEach((category) => {
-      if (category.default && !PrivacyChoicesPreferences.isCategoryConsented(category.storageKey)) {
-        this.changeCategory(category.storageKey, true)
-      }
-    })
-
+  dismissBanner () {
     // This is an interaction
     this.recordInteraction()
   }
@@ -245,10 +238,10 @@ class PrivacyChoices extends Component {
   }
 
   /**
-   * Handle accepting the default consent categories.
+   * Handle dismissing banner.
    */
-  handleAcceptDefault () {
-    this.acceptDefault()
+  handleDismissBanner () {
+    this.dismissBanner()
   }
 
   /**
@@ -319,7 +312,7 @@ class PrivacyChoices extends Component {
     return (
     // react-sidebar needs to wrap the other content, in this case the banner is a child
       <Sidebar sidebar={sidebarContent} open={this.state.isSettingsOpen} styles={sidebarStyles} touch={false}>
-        <PrivacyChoicesBanner isPromptVisible={this.state.isPromptShown} onAccept={this.handleAcceptDefault} onSettings={this.handleOpenSettings} />
+        <PrivacyChoicesBanner isPromptVisible={this.state.isPromptShown} onAccept={this.handleAcceptAll} onDecline={this.handleDeclineAll} onDismiss={this.handleDismissBanner} onSettings={this.handleOpenSettings} />
       </Sidebar>
     )
   };

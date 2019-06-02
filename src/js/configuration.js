@@ -28,9 +28,11 @@ const defaultConfiguration = {
     },
     prompt: {
       heading: 'Your privacy choices for this site',
-      description: 'This site uses cookies and other web storage technologies.',
-      acceptButton: 'Accept and continue',
-      settingsButton: 'Manage choices'
+      description: 'This site uses cookies and other web storage technologies to enhance your experience over and above necessary core functionality.',
+      acceptButton: 'Accept',
+      declineButton: 'Decline',
+      settingsButton: 'Manage choices',
+      dismissButton: 'Dismiss'
     },
     policy: {
       text: 'For more information on our use of web storage, please refer to our ',
