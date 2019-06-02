@@ -55,6 +55,15 @@ class PrivacyChoicesSettings extends Component {
       </p>
     }
 
+    // Bulk buttons
+    let bulkElement
+    if (PrivacyChoicesConfiguration.categories && PrivacyChoicesConfiguration.categories.length) {
+      bulkElement = <div id={bulkChangeId}>
+        <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.acceptAllButton} onClick={this.props.onAcceptAll} />
+        <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.declineAllButton} onClick={this.props.onDeclineAll} />
+      </div>
+    }
+
     return (
       <div id={id}>
         <div id={headerId}>
@@ -63,10 +72,7 @@ class PrivacyChoicesSettings extends Component {
         </div>
         <p>{PrivacyChoicesConfiguration.language.settings.description}</p>
         {policyElement}
-        <div id={bulkChangeId}>
-          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.acceptAllButton} onClick={this.props.onAcceptAll} />
-          <PrivacyChoicesButton text={PrivacyChoicesConfiguration.language.settings.declineAllButton} onClick={this.props.onDeclineAll} />
-        </div>
+        {bulkElement}
         {categoriesElements}
       </div>
     )
