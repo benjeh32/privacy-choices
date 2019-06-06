@@ -8,8 +8,8 @@ const defaultCallback = function () {
 
 const defaultConfiguration = {
   necessary: {
-    title: 'Necessary Storage',
-    description: 'Necessary storage enables core site functionality. This site cannot function properly without it, and it can only be disabled by changing your browser preferences.',
+    title: 'Strictly necessary storage',
+    description: 'Necessary storage enables core site functionality. This site cannot function without it, so it can only be disabled by changing settings in your browser.',
     handle: defaultCallback
   },
   policy: {
@@ -19,16 +19,16 @@ const defaultConfiguration = {
   categories: [ ],
   language: {
     settings: {
-      openButton: 'Privacy Choices',
+      openButton: 'Privacy',
       closeButton: 'Close',
-      heading: 'Your privacy choices',
+      heading: 'Privacy information',
       description: 'This site uses cookies and other web storage technologies. You can set your privacy choices below. Changes will take effect immediately.',
       acceptAllButton: 'Accept all',
       declineAllButton: 'Decline all'
     },
     prompt: {
       heading: 'Your privacy choices for this site',
-      description: 'This site uses cookies and other web storage technologies to enhance your experience over and above necessary core functionality.',
+      description: 'This site uses cookies and other web storage technologies to enhance your experience beyond necessary core functionality.',
       acceptButton: 'Accept',
       declineButton: 'Decline',
       settingsButton: 'Manage choices',

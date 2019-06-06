@@ -125,7 +125,7 @@ if (!document.getElementById(rootElementId)) {
   rootElement.id = rootElementId
 
   document.body.appendChild(rootElement)
-};
+}
 
 // Render everything into the root element
 ReactDOM.render((

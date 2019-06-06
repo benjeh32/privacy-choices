@@ -272,11 +272,11 @@ class PrivacyChoices extends Component {
    * RENDER FUNCTION *
    *******************/
   render () {
-    // Styles to fix overlays in react-sidebar from https://github.com/balloob/react-sidebar/issues/86
+    // Styles to fix overlays in react-sidebar adapted from https://github.com/balloob/react-sidebar/issues/86
     const sidebarStyles = {
       root: {
         // Position above overlays or other high z-index elements your app might use
-        zIndex: 1000,
+        zIndex: 10000,
         // Detach from right and bottom screen edges as it blocks underlying content
         // This also has the effect of shrinking the component to a width and height of 0
         right: 'auto',
