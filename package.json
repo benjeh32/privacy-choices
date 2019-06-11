@@ -2,7 +2,14 @@
     "name": "privacy-choices",
     "version": "1.0.0",
     "description": "A JavaScript library to give users a choice on web storage.",
-    "keywords": [],
+    "keywords": [
+        "javascript-library",
+        "privacy",
+        "gdpr",
+        "european-union",
+        "europe",
+        "eu"
+    ],
     "homepage": "https://github.com/benjeh32/privacy-choices",
     "private": true,
     "scripts": {
