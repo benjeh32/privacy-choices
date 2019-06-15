@@ -345,7 +345,7 @@ window.privacyChoicesConfiguration = {
      */
     categories: [
         {
-            // REQUIRED (string) unique identifier for this category in the user preferences cookie
+            // REQUIRED (string) unique identifier for this category in the user preferences cookie (should not contain spaces)
             storageKey: 'analytics',
             // REQUIRED (string) the title of the category as shown in the settings sidebar
             title: 'Analytics storage',
@@ -397,7 +397,7 @@ window.privacyChoicesConfiguration = {
         }
     },
     storage: {
-        // OPTIONAL (string) the name of the cookie that is used to store the user preferences in the browser
+        // OPTIONAL (string) the name of the cookie that is used to store the user preferences in the browser (should not contain spaces)
         key: 'privacy-choices',
         // OPTIONAL (integer) the number of days after which a user will be asked to make their choices again
         expiryDays: 90

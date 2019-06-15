@@ -53,11 +53,11 @@ class PrivacyChoicesCategory extends Component {
     return (
       <div className={className}>
         <div className={headerClassName}>
-          <h4>{this.props.title}</h4>
+          <h4 id={this.props.storageKey + '-heading'} >{this.props.title}</h4>
           <Switch onChange={this.handleChange} checked={isChecked} disabled={this.props.isRequired}
             handleDiameter={25} height={40} width={80} activeBoxShadow='none'
             uncheckedIcon={<div style={switchStyles.uncheckedIcon}>OFF</div>}
-            checkedIcon={<div style={switchStyles.checkedIcon}>ON</div>} />
+            checkedIcon={<div style={switchStyles.checkedIcon}>ON</div>} aria-labelledby={this.props.storageKey + '-heading'} />
         </div>
         <p>{this.props.description}</p>
       </div>
