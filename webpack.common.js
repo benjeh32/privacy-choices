@@ -7,21 +7,21 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'privacy-choices/index.html',
       template: path.join(__dirname, 'examples', 'index.html'),
       inject: false
     }),
     new HtmlWebpackPlugin({
-      filename: 'necessary-only/index.html',
-      template: path.join(__dirname, 'examples', 'necessary-only', 'index.html')
+      filename: 'privacy-choices/informational/index.html',
+      template: path.join(__dirname, 'examples', 'informational', 'index.html')
     }),
     new HtmlWebpackPlugin({
-      filename: 'standard-usage/index.html',
-      template: path.join(__dirname, 'examples', 'standard-usage', 'index.html')
+      filename: 'privacy-choices/minimal/index.html',
+      template: path.join(__dirname, 'examples', 'minimal', 'index.html')
     })
   ],
   output: {
-    filename: 'privacy-choices.bundle.js',
+    filename: 'privacy-choices/privacy-choices.bundle.js',
     path: path.join(__dirname, 'build')
   },
   module: {

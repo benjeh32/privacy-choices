@@ -228,11 +228,10 @@ The configuration setting should also be included in your `<body>`, but above th
 
 #### Minimal configuration
 
-While it would be recommended to conmfigure some more things to suit you needs, the minimal configuration would only need to define the set of consent categories and the callbacks to manage the user's acceptance or non-acceptance of these.
+While it would be recommended to configure some more things to suit you needs, the minimal configuration would only need to define the set of consent categories and the callbacks to manage the user's acceptance or non-acceptance of these. The live demo [here]() shows this configuration.
 
 ```javascript
 window.privacyChoicesConfiguration = {
-    {
         necessary: {
             handle: function () {
                 /*
@@ -463,10 +462,6 @@ npm install
 
 ### Building the bundle
 
-The live site is designed to be hosted on a web server, not viewed from a local file system.
-
-Furthermore, this library stores the user's preferences in a cookie. Many popular browsers don't support the use of cookies for `file://...` or `http://localhost/...` browsing. The easiest way to develop this library is using the live-updating web server and Microsoft Edge (which doesn't seem to mind local cookies).
-
 #### Development mode
 
 To start the live-updating web server:
@@ -487,7 +482,9 @@ To build the bundle and live demo site files for release:
 npm run build
 ```
 
-The built production mode artefacts (library bundle and demo site files) will be in `./build`.
+The built production mode artefacts (library bundle and demo site files) will be in `./build`. These should be hosted on a web server
+
+The demo site isn't designed for viewing from the local file system as Privacy Choices stores the user's preferences in a cookie and many popular browsers don't support the use of cookies for `file://...` browsing.
 
 </details>
 

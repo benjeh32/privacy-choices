@@ -33,13 +33,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/privacy-choices">About</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="example-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples <span class="sr-only">(current)</span></span></a>
                         <div class="dropdown-menu" aria-labelledby="example-dropdown">
-                            <a class="dropdown-item" href="/privacy-choices/minimal">Minimal configuration<span class="sr-only">(current)</span></a>
+                            <a class="dropdown-item active" href="/privacy-choices/minimal">Minimal configuration<span class="sr-only">(current)</span></a>
                             <a class="dropdown-item" href="/privacy-choices/informational">Informational mode</a>
                         </div>
                     </li>
@@ -54,21 +54,17 @@
             <p class="lead">Privacy Choices is a JavaScript library that allows you to give the users of your website choices regarding the use of cookies and other web storage technologies on their device.</p>
             <img class="shadow rounded" width="100%" src="https://github.com/benjeh32/privacy-choices/raw/master/examples/images/readme-prompt.png" alt="Privacy Choices banner prompt" />
 
-            <h2 class="mt-5">Live demo</h2>
-            <p>This site is provided as a live demo of the library. Various configurations are available from the navigation bar to demonstrate all that the library has to offer.</p>
+            <h2 class="mt-5">Examples // Minimal configuration</h2>
+            
+            <h3 class="mt-5">Overview</h3>
+            <p>While it would be recommended to configure some more things to suit you needs, the minimal configuration would only need to define the set of consent categories and the callbacks to manage the user's acceptance or non-acceptance of these.</p>
 
-            <h3 class="mt-5">Clear preferences</h3>
+            <h4 class="mt-5">Clear preferences</h4>
             <p>You may find it useful to <a href='javascript:(function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); window.location.reload(true)})();' class="button">clear preferences and reload the page</a> as you explore these examples. Doing so will make it as if you have just come to the page for the very first time.</p>
 
-            <h3 class="mt-5">Notice when using these demos</h3>
+            <h4 class="mt-5">Notice when using these demos</h4>
             <p>Having different configurations of consent choice categories on the same domain isn't how this library should be used. Privacy Choices will ask the user for consent again if it detects a different set of consent categories in configuration compared to what is stored in the preferences cookie for a domain.</p>
             <p>Therefore, as you browse these examples that are all hosted on the same domain you are likely to see the notification banner reappear very often as the library detects a mismatch between configuration and preferences. This is by design and will not be an issue in a production use case if implemented correctly.</p>
-
-            <h2 class="mt-5">Usage and source code</h2>
-            <p>You can find full details of the project <a href="https://github.com/benjeh32/privacy-choices">on GitHub</a>.</p>
-
-            <h2 class="mt-5">License</h2>
-            <p>Licensed under the <a href="https://github.com/benjeh32/privacy-choices/blob/master/LICENSE">MIT License</a>.</p>
         </div>
     </main>
 
@@ -89,6 +85,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    <!-- Privacy Choices configuration -->
+    <script>
+        window.privacyChoicesConfiguration = {
+            necessary: {
+                handle: function () {
+                    console.log('[Privacy Choices] Handle necessary')
+                }
+            },
+            categories: [
+                {
+                    storageKey: 'example1',
+                    title: 'Category title',
+                    description: 'Category description (example category, not used on site).',
+                    handleAccept: function () {
+                        console.log('[Privacy Choices] Handle example1 accepted')
+                    },
+                    handleReject: function () {
+                        console.log('[Privacy Choices] Handle example1 rejected')
+                    }
+                },
+                {
+                    storageKey: 'example2',
+                    title: 'Category 2 title',
+                    description: 'Category 2 description (example category, not used on site).',
+                    handleAccept: function () {
+                        console.log('[Privacy Choices] Handle example2 accepted')
+                    },
+                    handleReject: function () {
+                        console.log('[Privacy Choices] Handle example2 rejected')
+                    }
+                },
+            ]
+        }
+    </script>
+
+    <!-- privacy-choices.bundle.js will be included here -->
 </body>
 
 </html>
