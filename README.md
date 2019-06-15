@@ -18,7 +18,7 @@ If your website is impacted by EU privacy legislation, it is worth doing your re
 
 <details>
 
-<summary>Show/hide more</summary>
+<summary>Show/hide section</summary>
 
 #### ePrivacy Directive
 
@@ -425,7 +425,13 @@ window.privacyChoicesConfiguration = {
 
 ## Developer information
 
-This section will be useful for anybody who ends up cloning this repository. If you just want to use Priovacy Choices, head over to the [releases page](https://github.com/benjeh32/privacy-choices/releases) to get the latest version that is compiled and ready to go.
+This section will be useful for anybody who ends up cloning this repository.
+
+If you just want to use Privacy Choices, head over to the [releases page](https://github.com/benjeh32/privacy-choices/releases) to get the latest version that is compiled and ready to go.
+
+<details>
+
+<summary>Show/hide section</summary>
 
 ### Status
 
@@ -482,6 +488,8 @@ npm run build
 ```
 
 The built production mode artefacts (library bundle and demo site files) will be in `./build`.
+
+</details>
 
 ## Credits
 
