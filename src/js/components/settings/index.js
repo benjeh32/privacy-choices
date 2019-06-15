@@ -51,7 +51,7 @@ class PrivacyChoicesSettings extends Component {
     let policyElement
     if (PrivacyChoicesConfiguration.policy.display) {
       policyElement = <p>
-        {PrivacyChoicesConfiguration.language.policy.text}<a href={PrivacyChoicesConfiguration.policy.uri} style={linkStyle}>{PrivacyChoicesConfiguration.language.policy.linkText}</a>
+        {PrivacyChoicesConfiguration.language.policy.text} <a href={PrivacyChoicesConfiguration.policy.uri} style={linkStyle}>{PrivacyChoicesConfiguration.language.policy.linkText}</a>
       </p>
     }
 

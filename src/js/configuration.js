@@ -35,7 +35,7 @@ const defaultConfiguration = {
       dismissButton: 'Dismiss'
     },
     policy: {
-      text: 'For more information on our use of web storage, please refer to our ',
+      text: 'For more information on our use of web storage, please refer to our',
       linkText: 'Privacy Policy'
     }
   },

@@ -51,23 +51,31 @@ If you didn't bother to read that then at least take note of the the short versi
 
 A friend of mine is involved with the [Nightline Association](https://www.nightline.ac.uk), a charity that supports student listening services open at night and run by students for students at nearly 40 educational institutes across the UK and Ireland. When attempting to identify a solution to handle their use of web storage across their websites and applications it became clear that there wasn't anything that quite fit their needs.
 
-Not many of the many free or open-source plugins available online really felt like the right fit as they were either missing certain desired functionality or required an excessive amount of manual customisation to get the look and feel that was wanted.
+Few of the many free or open-source plugins available online really felt like the right fit as they were either missing certain desired functionality or required a significant amount of manual customisation to get the look and feel that was desired.
 
 Conversely, a number of the available paid-for solutions seemed like exactly what was wanted but for a charity it just wasn't feasible to pay a yearly subscription to get access to the one or two 'pro-edition' features that they needed.
 
-As a result, I decided to put together Privacy Choices. It is my attempt at a privacy management library that, while it might have all of the bells and whistles of the subscription-based solutions, has a clean look and feel, has an intuitive settings panel, is highly customisable, and is free to use.
+As a result, I decided to put together Privacy Choices. It is my attempt at a privacy management library that, while it might not have all of the bells and whistles of the subscription-based solutions, has a clean look and feel, an intuitive settings panel, is highly customisable, and is free to use.
+
+### Live demo
+
+There are a number of live demo examples with various configurations [here](http://code.benthomas.me/privacy-choices).
+
+### Latest release
+
+Head over to the [releases page](https://github.com/benjeh32/privacy-choices/releases) to get the latest version, compiled and ready to use.
 
 <img style="text-align=center" src="https://github.com/benjeh32/privacy-choices/raw/master/examples/images/readme-settings.png" alt="Privacy Choices choices menu" width="400"/>
 
-### Features
+## Features
 
-#### What it has
+### What it has
 
 - A notification banner prompting users to make their choices
 
 - Equal-weighted options for accepting and denying full use of storage
 
-- Privacy settings always available to the user through an on-screen toggle
+- Privacy settings always available to the user through an on-screen toggle:
 
 <img style="text-align=center" src="https://github.com/benjeh32/privacy-choices/raw/master/examples/images/readme-toggle.png" alt="Privacy Choices choices toggle" />
 
@@ -87,67 +95,93 @@ As a result, I decided to put together Privacy Choices. It is my attempt at a pr
 
 - Lots of customisation
 
-#### What it does not have
+### What it does not have
 
 There are some things not covered by this library, which may or may not change in future releases. **Do your research** and reconsider whether to use Privacy Choices if your use case requires any of the below:
 
 - Handling of third-party cookies
 
-- User preferences for a parent domain coming with them to sub-domains
+- Sharing users' preferences across a parent domain and its sub-domains
 
 - Multiple language support
 
-  - The default is English (UK)
+  - The default configuration has text in English (UK)
   
-  - All text can be customised to change to a single different language, however
+  - Currently, all text values can be overidden (which you could do in another language)
 
-- Conditional use of the tool based on user geolocation
+- Using users' geolocation to conditionally display the tool or not
 
-#### Customisation
+### Customisation
 
-The following things are customisable:
+#### Headings, descriptions and buttons
 
-- Headings, descriptions and buttons
+- Change the wording to better inform users about how you use storage on your site
+- Alternatively, override with text in your own language
+- If these are changed, you should ensure that the replacement text is clear and unambiguous
 
-  - These should remain clear and unambiguous if changed
+#### Colour of buttons, backgrounds and text
 
-- Colour of buttons, backgrounds and text
+- Match the tool to your site's design by changing text and background colours
+- You should keep things user-friendly if you change things - don't use these settings to trick users
 
-  - These should remain user-friendly if changed
+#### Number of days before consent expires and the user has to re-consent
 
-- Number of days before consent expires and the user has to re-consent
+- After a configurable number of days users will be asked to provide their choices again
+- Make sure your users stay in control by regularly reminding them to update their privacy settings
+- The default reminder is every 90 days, and this can be changed to any value
+- If changed, consider the context of your website when deciding how often to make users update settings
 
-  - Depending on your use case, as per legislation
+#### Privacy policy link
 
-- Whether the policy link is displayed, and the URI to it (if shown)
+- Point users in the direction of your full privacy policy or other statement
+- If you already have links to this that you wish to keep, the link can be disabled
 
-  - You may already have links to this you wish to keep
+#### Titles and descriptions of the consent categories
 
-- Titles and descriptions of the consent categories
+- Add as many or few categories as needed
+- Every category you use must be covered, although these categories are defined by you according to your use case
+- In the case of only using necessary storage, define no categories to enable 'informational mode'
 
-  - Add as many or few as required - every category you use must be covered, although these categories are defined by you according to your use case
+#### JavaScript callbacks
 
-- The JavaScript callbacks that are executed when a user accepts or rejects their consent for each category
+- These should entirely manage your storage usage if you use this library
+- There is one for:
+  - The necessary category
+  - Every custom category, when turned on
+  - Every custom category, when turned off
 
-  - These should entirely manage your storage usage from now on, turning it on and off as appropriate
+## Use it on your website
 
-- The JavaScript callback that is executed when a user first loads the page
+### Installation
 
-  - This is for the 'strictly necessary' category that stores the allowed exemptions
+Include `privacy-choices.bundle.js` at the bottom of your `<body>`:
 
-  - Some may find this category useful to use, others may leave it blank
+```html
+<!DOCTYPE html>
+<html>
 
-### Live demo
+<head>
+    <title>Installation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-There are a number of live demo examples with various configurations [here](http://code.benthomas.me/privacy-choices).
+<body>
+    <h1>Installation</h1>
 
-### Use it on your website
+    <p>The rest of the page content.</p>
 
-#### Installation
+    <!-- Include privacy-choices.bundle.js at the bottom of your <body> -->
+    <script type="text/javascript" src="path/to/privacy-choices.bundle.js"></script>
+</body>
 
-#### Configuration
+</html>
+```
 
-#### Responsiveness
+This should be done anywhere that you wish to show the tool (probably everywhere). For the tool to be effective the library must be loaded at all times as soon as the user lands on any page on your site.
+
+Depending on your framework (or lack thereof) a theme or template would be a good way to include the script because you would only need to do it in one place. Alternatively, you will have to include it on every static page.
+
+### Responsiveness
 
 Privacy Choices should scale appropriately so that it has good usability on smaller devices (e.g. mobile). However, to take advantage of this, you should configure the viewport on your site to support such devices:
 
@@ -161,9 +195,237 @@ Privacy Choices should scale appropriately so that it has good usability on smal
 
 More information on the browser's viewport can be found in the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag).
 
+### Configuration
+
+Configuration is set as a JavaScript object `window.privacyChoicesConfiguration`. It is merged with the default configuration that can be seen further down this README, with the configuration you set on the page taking priority. You only need to set what you want to override.
+
+The configuration setting should also be included in your `<body>`, but above the inclusion of the library itself:
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Configuration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>Configuration</h1>
+
+    <p>The rest of the page content </p>
+
+    <!-- Add configuration to the bottom of the <body> before the library itself -->
+    <script>
+        window.privacyChoicesConfiguration = { }
+    </script>
+
+    <script type="text/javascript" src="path/to/privacy-choices.bundle.js"></script>
+</body>
+
+</html>
+```
+
+#### Minimal configuration
+
+While it would be recommended to conmfigure some more things to suit you needs, the minimal configuration would only need to define the set of consent categories and the callbacks to manage the user's acceptance or non-acceptance of these.
+
+```javascript
+window.privacyChoicesConfiguration = {
+    {
+        necessary: {
+            handle: function () {
+                /*
+                * This runs once, on page load.
+                *
+                * You should configure any strictly-necessary storage here.
+                */
+            }
+        },
+        categories: [
+            {
+                storageKey: 'example1',
+                title: 'Category title',
+                description: 'Category description.',
+                handleAccept: function () {
+                    /*
+                    * This runs whenever the category is toggled ON, plus at page load if currently turned ON.
+                    *
+                    * You should set up, enable or configure any storage for this category here.
+                    */
+                },
+                handleReject: function () {
+                    /*
+                    * This runs whenever the category is toggled OFF, plus at page load if currently turned OFF.
+                    *
+                    * You should tear down, disable or remove any storage for this category here.
+                    */
+                }
+            },
+            {
+                storageKey: 'example2',
+                title: 'Category 2 title',
+                description: 'Category 2 description.',
+                handleAccept: function () {
+                    /*
+                    * This runs whenever the category is toggled ON, plus at page load if currently turned ON.
+                    *
+                    * You should set up, enable or configure any storage for this category here.
+                    */
+                },
+                handleReject: function () {
+                    /*
+                    * This runs whenever the category is toggled OFF, plus at page load if currently turned OFF.
+                    *
+                    * You should tear down, disable or remove any storage for this category here.
+                    */
+                }
+            },
+        ]
+    }
+```
+
+### Informational mode
+
+An alternate configuration of Privacy Choices is available in the case of a website that only uses necessary storage. In this case, a website need only inform the user that they use storage for making the site work and nothing more. Simply don't define the `categories` in the configuration and the library will run with a `Dismiss` button instead of `Accept` and `Reject` buttons. The live demo [here](http://code.benthomas.me/privacy-choices/necessary-only) is an implementation of the below configuration, which may be suitable for such a use case.
+
+```javascript
+window.privacyChoicesConfiguration = {
+    necessary: {
+        handle: function () {
+            /*
+             * This runs once, on page load.
+             *
+             * You should configure any strictly-necessary storage here.
+             */
+        },
+        title: 'Strictly-necessary cookies',
+        description: 'These cookies enable core site functionality. This site cannot function properly without them, and they can only be disabled by changing your browser preferences.',
+    },
+    language: {
+        settings: {
+            openButton: 'Privacy Information',
+            closeButton: 'Close',
+            heading: 'Privacy Information',
+            description: 'This site uses cookies to enable core site functionality. No other storage is kept on your device.'
+        },
+        prompt: {
+            heading: 'Privacy information for this site',
+            description: 'This site uses cookies to enable core site functionality. No other storage is kept on your device.',
+            settingsButton: 'More information',
+            dismissButton: 'Dismiss'
+        }
+    },
+}
+```
+
+## Full configuration
+
+The full set of configuration values are below. There are inline comments to describe them. The values assigned in the code snippet below are the default ones that any custom configuration defined on the page will overwrite:
+
+```javascript
+window.privacyChoicesConfiguration = {
+    necessary: {
+        // OPTIONAL (string) the heading for the necessary storage category in the settings sidebar
+        title: 'Strictly necessary storage',
+        // OPTIONAL (string) the longer text for the necessary storage category in the settings sidebar
+        description: 'Necessary storage enables core site functionality. This site cannot function without it, so it can only be disabled by changing settings in your browser.',
+        // REQUIRED (function) the callback executed once on every page load where you should manage your necessary storage
+        handle: function () { }
+    },
+    policy: {
+        // OPTIONAL (boolean) whether the link to a privacy policy should be shown in the settings sidebar
+        display: true,
+        // OPTIONAL (string, URI) the location to link to for the privacy policy
+        uri: 'https://example.com/policy'
+    },
+    /* OPTIONAL (object array)
+     * The default value is an empty array, but an example category is included here for reference.
+     * Leave empty (i.e. don't define it in custom configuration) to run the library in informational mode.
+     */
+    categories: [
+        {
+            // REQUIRED (string) unique identifier for this category in the user preferences cookie
+            storageKey: 'analytics',
+            // REQUIRED (string) the title of the category as shown in the settings sidebar
+            title: 'Analytics storage',
+            // REQUIRED (string) the description of the category as shown in the settings sidebar
+            description: 'We use analytics to track visits to our sites. We also track which pages you view while you\'re hear to learn how we could improve the site.',
+            // REQUIRED (function) the callback executed whenever this category is toggled on (or when already on and the page is loaded) - you should manage enabling of this storage here
+            handleAccept: function () { },
+            // REQUIRED (function) the callback executed whenever this category is toggles off (or when already off and the page is loaded) - you should manage disabling and clearing of this storage here
+            handleReject: function () { }
+        }
+    ],
+    language: {
+        // OPTIONAL (object) language options for the settings sidebar
+        settings: {
+            // OPTIONAL (string) text for the always-present button that opens the settings sidebar
+            openButton: 'Privacy',
+            // OPTIONAL (string) text for the settings sidebar close button
+            closeButton: 'Close',
+            // OPTIONAL (string) text for the setting-sidebar title
+            heading: 'Privacy information',
+            // OPTIONAL (string) text for the settings sidebar below the title
+            description: 'This site uses cookies and other web storage technologies. You can set your privacy choices below. Changes will take effect immediately.',
+            // OPTIONAL (string) text for the button on the settings sidebar that toggles all categories on
+            acceptAllButton: 'Accept all',
+            // OPTIONAL (string) text for the button on the settings sidebar that toggles all categories off
+            declineAllButton: 'Decline all'
+        },
+        // OPTIONAL (object) language options for the notification prompt banner
+        prompt: {
+            // OPTIONAL (string) text for the heading on the notification prompt
+            heading: 'Your privacy choices for this site',
+            // OPTIONAL (string) longer text on the notification prompt
+            description: 'This site uses cookies and other web storage technologies to enhance your experience beyond necessary core functionality.',
+            // OPTIONAL (string) text on the button that the user can accept everything using
+            acceptButton: 'Accept',
+            // OPTIONAL (string) text on the button that the user can decline everything using
+            declineButton: 'Decline',
+            // OPTIONAL (string) text on the button that the user can click to see more options
+            settingsButton: 'Manage choices',
+            // OPTIONAL (string) text on the button that dismisses the banner when in informational mode
+            dismissButton: 'Dismiss'
+        },
+        // OPTIONAL (object) language options for the privacy policy link, used if window.privacyChoicesConfiguration.policy.display is set to true
+        policy: {
+            // OPTIONAL (string) the text proceeding the privacy policy link, after which will follow a space character and then the link
+            text: 'For more information on our use of web storage, please refer to our',
+            // OPTIONAL (string) the text that is hyperlinked to the URI specified by window.privacyChoicesConfiguration.policy.uri
+            linkText: 'Privacy Policy'
+        }
+    },
+    storage: {
+        // OPTIONAL (string) the name of the cookie that is used to store the user preferences in the browser
+        key: 'privacy-choices',
+        // OPTIONAL (integer) the number of days after which a user will be asked to make their choices again
+        expiryDays: 90
+    },
+    style: {
+        // OPTIONAL (string, hex colour) the background colour of the settings toggle button
+        toggleBackgroundColour: '#222222',
+        // OPTIONAL (string, hex colour) the text colour of the settings toggle button
+        toggleTextColour: '#ffffff',
+        // OPTIONAL (string, hex colour) the background colour of the buttons
+        buttonBackgroundColour: '#690060',
+        // OPTIONAL (string, hex colour) the text colour of the buttons
+        buttonTextColour: '#ffffff',
+        // OPTIONAL (string, hex colour) the background colour of the notification prompt banner
+        promptBackgroundColour: '#222222',
+        // OPTIONAL (string, hex colour) the text colour of the notification prompt banner
+        promptTextColour: '#ffffff',
+        // OPTIONAL (string, hex colour) the background colour of the settings sidebar
+        settingsBackgroundColour: '#222222',
+        // OPTIONAL (string, hex colour) the text colour of the settings sidebar
+        settingsTextColour: '#ffffff'
+    }
+}
+```
+
 ## Developer information
 
-The below will be useful for anybody who may end up cloning this repository.
+This section will be useful for anybody who ends up cloning this repository. If you just want to use Priovacy Choices, head over to the [releases page](https://github.com/benjeh32/privacy-choices/releases) to get the latest version that is compiled and ready to go.
 
 ### Status
 
