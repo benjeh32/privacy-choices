@@ -51,3 +51,15 @@
     align-items: center;
     padding-bottom: 20px;
 }
+
+/* Handling the Wordpress admin bar */
+
+.admin-bar #privacy-choices #privacy-choices-settings {
+    margin-top: 46px;
+}
+
+@media screen and (min-width: 783px) {
+    .admin-bar #privacy-choices #privacy-choices-settings {
+        margin-top: 32px;
+    }
+}
