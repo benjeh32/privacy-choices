@@ -59,7 +59,7 @@ As a result, I decided to put together Privacy Choices. It is my attempt at a pr
 
 ### Live demo
 
-There are a number of live demo examples with various configurations [here](http://code.benthomas.me/privacy-choices).
+There are a number of live demo examples with various configurations [here](https://code.benthom.as/privacy-choices).
 
 ### Latest release
 
@@ -286,7 +286,7 @@ window.privacyChoicesConfiguration = {
 
 ### Informational mode
 
-An alternate configuration of Privacy Choices is available in the case of a website that only uses necessary storage. In this case, a website need only inform the user that they use storage for making the site work and nothing more. Simply don't define the `categories` in the configuration and the library will run with a `Dismiss` button instead of `Accept` and `Reject` buttons. The live demo [here](http://code.benthomas.me/privacy-choices/necessary-only) is an implementation of the below configuration, which may be suitable for such a use case.
+An alternate configuration of Privacy Choices is available in the case of a website that only uses necessary storage. In this case, a website need only inform the user that they use storage for making the site work and nothing more. Simply don't define the `categories` in the configuration and the library will run with a `Dismiss` button instead of `Accept` and `Reject` buttons. The live demo [here](https://code.benthom.as/privacy-choices/necessary-only) is an implementation of the below configuration, which may be suitable for such a use case.
 
 ```javascript
 window.privacyChoicesConfiguration = {
